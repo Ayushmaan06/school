@@ -222,7 +222,7 @@ async def test_no_mpd_page_still_returns_the_homepage(db_session, clean, fetcher
         _robots()
         respx.get("https://s.test/").mock(
             return_value=httpx.Response(
-                200, text='<footer>Call 080 4123 4567 or office@s.test</footer>'
+                200, text="<footer>Call 080 4123 4567 or office@s.test</footer>"
             )
         )
         respx.route(host="s.test").mock(return_value=httpx.Response(404, text="nope"))
@@ -300,6 +300,7 @@ async def test_a_denylisted_fee_link_is_never_followed(db_session, clean, fetche
 
     assert result.outcome == "found_index"
     assert result.fee_hash is None
+
 
 async def test_dead_origin_costs_one_fetch_not_six(db_session, clean, fetcher):
     """A 5xx homepage stops the walk. [VERIFIED M5] the biggest time sink.

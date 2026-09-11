@@ -22,16 +22,47 @@ from sqlalchemy.orm import Session
 # Registrable-domain suffixes that take two labels. Without these,
 # `bikanerboysschool.ac.in` would yield "ac" instead of the school name.
 MULTI_SUFFIXES = {
-    "ac.in", "co.in", "edu.in", "org.in", "net.in", "gov.in",
-    "sch.in", "nic.in", "res.in", "gen.in", "ind.in", "co.uk",
+    "ac.in",
+    "co.in",
+    "edu.in",
+    "org.in",
+    "net.in",
+    "gov.in",
+    "sch.in",
+    "nic.in",
+    "res.in",
+    "gen.in",
+    "ind.in",
+    "co.uk",
 }
 
 # Tokens that identify a platform or a generic word rather than a school.
 GENERIC = {
-    "school", "schools", "vidyalaya", "academy", "college", "education",
-    "wixsite", "blogspot", "wordpress", "weebly", "google", "sites",
-    "webs", "yolasite", "godaddysites", "squarespace", "gmail", "com",
-    "org", "net", "edu", "home", "index", "www", "public",
+    "school",
+    "schools",
+    "vidyalaya",
+    "academy",
+    "college",
+    "education",
+    "wixsite",
+    "blogspot",
+    "wordpress",
+    "weebly",
+    "google",
+    "sites",
+    "webs",
+    "yolasite",
+    "godaddysites",
+    "squarespace",
+    "gmail",
+    "com",
+    "org",
+    "net",
+    "edu",
+    "home",
+    "index",
+    "www",
+    "public",
 }
 
 # A school domain shared by this many institutions is an ERP vendor or a
@@ -116,7 +147,9 @@ def backfill(session: Session, *, only_weak: bool = True) -> dict[str, int]:
     shared: dict[str, int] = {}
     for token in tokens.values():
         shared[token] = shared.get(token, 0) + 1
-    skipped_shared = sum(1 for t in tokens.values() if shared[t] > MAX_SCHOOLS_PER_DOMAIN)
+    skipped_shared = sum(
+        1 for t in tokens.values() if shared[t] > MAX_SCHOOLS_PER_DOMAIN
+    )
 
     now = datetime.now(UTC)
     written = 0

@@ -313,6 +313,7 @@ async def test_a_good_response_resets_the_breaker(db_session, clean, fetcher):
     assert good.interstitial is False
     assert good.content_hash is not None
 
+
 def test_load_returns_none_for_an_unreadable_document(db_session, clean, tmp_path):
     """A stored file that exists but will not open must not raise.
 

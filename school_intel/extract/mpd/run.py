@@ -43,7 +43,7 @@ REFRESH_DAYS = 180
 # version, so bumping one extractor's `_v1` to `_v2` invalidates its markers on
 # its own - there is no second place to remember to update, and no way to ship a
 # parser change that silently never gets applied.
-PIPELINE_VERSION = "|".join((tables.EXTRACTOR, ocr.EXTRACTOR, patterns.EXTRACTOR))
+PIPELINE_VERSION = f"{tables.EXTRACTOR}|{ocr.EXTRACTOR}|{patterns.EXTRACTOR}"
 
 # Commit the markers periodically so a full pass is resumable. A national
 # re-extract is hours of OCR; without this, interrupting it discarded all of it.

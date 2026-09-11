@@ -73,9 +73,7 @@ def state_view(
 ):
     if contactable:
         contact = "verified"
-    schools = queries.schools_in_state(
-        session, state, contact=contact, class12=class12
-    )
+    schools = queries.schools_in_state(session, state, contact=contact, class12=class12)
     return TEMPLATES.TemplateResponse(
         request,
         "schools.html",
@@ -186,8 +184,11 @@ def export_csv(
         label = city
     else:
         rows = queries.schools_in_state(
-            session, state or "karnataka", limit=5000,
-            contact=contact, class12=class12,
+            session,
+            state or "karnataka",
+            limit=5000,
+            contact=contact,
+            class12=class12,
         )
         label = state or "karnataka"
 

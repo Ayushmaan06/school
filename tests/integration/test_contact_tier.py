@@ -13,7 +13,9 @@ from school_intel.api import queries
 def test_tiers_partition_every_school(db_session):
     counts = {}
     for tier in ("verified", "weak", "none"):
-        rows = queries.schools_in_state(db_session, "karnataka", limit=5000, contact=tier)
+        rows = queries.schools_in_state(
+            db_session, "karnataka", limit=5000, contact=tier
+        )
         counts[tier] = len(rows)
         for row in rows:
             assert row["contact_tier"] == tier
@@ -62,8 +64,8 @@ def test_token_extraction():
         "www.dpsnadergul.com": "dpsnadergul",
         "https://bikanerboysschool.ac.in/": "bikanerboysschool",
         "nalandapublicschool.co.in": "nalandapublicschool",
-        "www.dipsgilzian/in": "dipsgilzian",          # typo'd separator
-        "bioreschool@.in": "bioreschool",             # email typed into website
+        "www.dipsgilzian/in": "dipsgilzian",  # typo'd separator
+        "bioreschool@.in": "bioreschool",  # email typed into website
         "sgtba.in": "sgtba",
         "nchs-gwalior.edu.in": "nchsgwalior",
     }

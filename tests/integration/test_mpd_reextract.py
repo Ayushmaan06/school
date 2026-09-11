@@ -82,8 +82,10 @@ def entity_keys(session) -> set[str]:
     return {
         row[0]
         for row in session.execute(
-            text("SELECT DISTINCT entity_key FROM observations WHERE"
-                 " source_id = 'cbse_mpd'")
+            text(
+                "SELECT DISTINCT entity_key FROM observations WHERE"
+                " source_id = 'cbse_mpd'"
+            )
         )
     }
 

@@ -100,7 +100,7 @@ def homepage_url(website: str | None) -> str | None:
     site = website.strip()
     # ponytail: 17 rows carry "http:host" (no slashes); httpx then reads the
     # host as a port and every chunk re-fails them. Drop the broken scheme.
-    site = re.sub(r"^https?:(?!//)", "", site, flags=re.I)
+    site = re.sub(r"^https?:(?!//)", "", site, flags=re.IGNORECASE)
     if not site.lower().startswith(("http://", "https://")):
         site = "https://" + site
     return site.rstrip("/")
@@ -280,7 +280,13 @@ async def discover(
         page_text = HTMLParser(page_html).text(separator=" ")
         if is_login_wall(page_text):
             return DiscoveryResult(
-                institution_id, None, None, None, None, used, "login_wall",
+                institution_id,
+                None,
+                None,
+                None,
+                None,
+                used,
+                "login_wall",
                 home_hash=home.content_hash,
             )
         if not looks_like_mpd(page_text):
@@ -294,7 +300,13 @@ async def discover(
 
     if index_url is None:
         return DiscoveryResult(
-            institution_id, None, None, None, None, used, "not_found",
+            institution_id,
+            None,
+            None,
+            None,
+            None,
+            used,
+            "not_found",
             home_hash=home.content_hash,
         )
 
@@ -302,7 +314,13 @@ async def discover(
     fee_url = fee_document_url(index_html, index_url)
     if fee_url is None or used >= MAX_FETCHES:
         return DiscoveryResult(
-            institution_id, index_url, index_hash, None, None, used, "found_index",
+            institution_id,
+            index_url,
+            index_hash,
+            None,
+            None,
+            used,
+            "found_index",
             home_hash=home.content_hash,
         )
 
@@ -310,8 +328,14 @@ async def discover(
     used += 1
     if fee.blocked_reason or fee.status != 200 or not fee.content_hash:
         return DiscoveryResult(
-            institution_id, index_url, index_hash, fee_url, None, used,
-            "found_index", home_hash=home.content_hash,
+            institution_id,
+            index_url,
+            index_hash,
+            fee_url,
+            None,
+            used,
+            "found_index",
+            home_hash=home.content_hash,
         )
 
     return DiscoveryResult(

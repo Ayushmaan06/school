@@ -18,3 +18,6 @@ INFO:     127.0.0.1:61234 - "GET /api/docs HTTP/1.1" 200 OK
 INFO:     127.0.0.1:61234 - "GET /openapi.json HTTP/1.1" 200 OK
 INFO:     127.0.0.1:51994 - "GET / HTTP/1.1" 200 OK
 INFO:     127.0.0.1:51994 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52607 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52607 - "GET /state/uttar%20pradesh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64374 - "GET / HTTP/1.1" 200 OK

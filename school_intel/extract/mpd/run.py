@@ -57,11 +57,21 @@ def _mark_extracted(session: Session, content_hash: str) -> None:
     nothing writes no observation, so `observations` alone cannot answer "have
     we read this?" - and the no-yield cases are the expensive ones: a scanned
     fee PDF that OCR fails on costs tens of seconds to fail again.
+
+    Guarded by EXISTS rather than a bare INSERT: `extraction_runs.content_hash`
+    FK-references `raw_documents`, and a small number of hashes are recorded on
+    a `fetches` row with no matching `raw_documents` row - a gap from a crashed
+    enrichment run, not something this stage can repair. Marking one would
+    violate the FK and abort the whole reextract loop over one dangling row;
+    skipping it just means that row gets retried (a no-op) next run too,
+    which is cheap next to aborting thousands of valid documents.
     """
     session.execute(
         text(
             "INSERT INTO extraction_runs (content_hash, extractor)"
-            " VALUES (:h, :v) ON CONFLICT DO NOTHING"
+            " SELECT :h, :v WHERE EXISTS ("
+            "   SELECT 1 FROM raw_documents WHERE content_hash = :h)"
+            " ON CONFLICT DO NOTHING"
         ),
         {"h": content_hash, "v": PIPELINE_VERSION},
     )

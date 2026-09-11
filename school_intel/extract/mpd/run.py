@@ -576,6 +576,14 @@ def backfill_last_enriched(session: Session) -> int:
             "      JOIN fetches f"
             "        ON f.source_id = :src"
             "       AND i2.website IS NOT NULL"
+            # Scoped to unstamped rows only - this is a repair for the crash
+            # window (a batch fetched but not yet committed to
+            # last_enriched_at), not a re-check of schools the direct stamp
+            # already covered. Without this the ILIKE join below - which
+            # cannot use an index - re-scanned all of `fetches` for every one
+            # of 33k institutions on every call, including the ~16k already
+            # stamped: 20+ minutes and growing every enrichment run.
+            "       AND i2.last_enriched_at IS NULL"
             "       AND f.url ILIKE '%' || i2.website || '%'"
             "     WHERE NOT EXISTS ("
             "       SELECT 1 FROM institutions other"

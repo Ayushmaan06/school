@@ -6,16 +6,25 @@
 schools and contact details.</p>
 
 <div class="stats">
-  <div class="stat"><b>{{ "{:,}".format(totals.schools) }}</b><span>schools</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.senior_secondary) }}</b><span>with class 12</span></div>
-  <div class="stat"><b>{{ totals.states }}</b><span>states</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.with_website) }}</b><span>websites</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.with_phone) }}</b><span>phone</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.with_email) }}</b><span>email</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.with_fee) }}</b><span>fee known</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.with_students) }}</b><span>student count</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.contactable) }}</b><span>contactable</span></div>
-  <div class="stat"><b>{{ "{:,}".format(totals.strongly_contactable) }}</b><span>strongly contactable</span></div>
+  <div class="stat" title="All active schools in the CBSE registry (excludes 435 disaffiliated schools).">
+    <b>{{ "{:,}".format(totals.schools) }}</b><span>schools</span></div>
+  <div class="stat" title="Schools where a source has CONFIRMED class 12 exists. Not counted here does not mean 'no' - most were simply never checked.">
+    <b>{{ "{:,}".format(totals.senior_secondary) }}</b><span>with class 12</span></div>
+  <div class="stat" title="Distinct states/UTs with at least one school."><b>{{ totals.states }}</b><span>states</span></div>
+  <div class="stat" title="Schools with a website on file, from the registry or enrichment.">
+    <b>{{ "{:,}".format(totals.with_website) }}</b><span>websites</span></div>
+  <div class="stat" title="Schools with a phone number found on their own site.">
+    <b>{{ "{:,}".format(totals.with_phone) }}</b><span>phone</span></div>
+  <div class="stat" title="Schools with an email address found on their own site (guessed emails are not counted here).">
+    <b>{{ "{:,}".format(totals.with_email) }}</b><span>email</span></div>
+  <div class="stat" title="Schools with a fee figure extracted from a published fee document.">
+    <b>{{ "{:,}".format(totals.with_fee) }}</b><span>fee known</span></div>
+  <div class="stat" title="Schools with a student count - published, or estimated as teachers x 25 where only teacher count was published.">
+    <b>{{ "{:,}".format(totals.with_students) }}</b><span>student count</span></div>
+  <div class="stat" title="Phone or email in hand, OR a website we have actually visited even if nothing was extracted from it yet - some way to reach them.">
+    <b>{{ "{:,}".format(totals.contactable) }}</b><span>contactable</span></div>
+  <div class="stat" title="Verified phone or email in hand. A strict subset of 'contactable'.">
+    <b>{{ "{:,}".format(totals.strongly_contactable) }}</b><span>strongly contactable</span></div>
 </div>
 
 <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
@@ -50,8 +59,12 @@ schools and contact details.</p>
     <div class="wrap">
       <table>
         <thead><tr>
-          <th>State</th><th>Schools</th><th>Class 12</th>
-          <th>Phone</th><th>Email</th><th>Enriched</th>
+          <th>State</th>
+          <th title="All active schools in this state.">Schools</th>
+          <th title="Confirmed to have class 12 by some source - not a count of 'yes + unsure'.">Class 12</th>
+          <th title="Verified phone number on file.">Phone</th>
+          <th title="Verified email on file.">Email</th>
+          <th title="Schools with at least one fact extracted from their own site - not 'fully done', just 'visited and found something'.">Enriched</th>
         </tr></thead>
         <tbody>
         {% for p in points %}

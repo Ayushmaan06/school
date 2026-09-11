@@ -18301,3 +18301,813 @@ INFO:httpx:HTTP Request: GET https://aryavidyamandirschool.com/mandatory-disclos
   "fee_coverage_pct": 3.4
 }
 === chunk 101/400 ===
+INFO:school_intel.extract.mpd.run:enriching 29 schools
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SANT KARAM SINGH ACADEMY: discovery failed: sksaroopnagar.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SHRI GURU NANAK DEV ACADEMY,: discovery failed: sgndakandial.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://shishuedu.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://shishuedu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://shishuedu.in/docs/mdf.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com/mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:ST.PETERS CONVENT SCHOOL: https://stpeterconventschool.com/mandatory-disclosure.html belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stpeterconventschool.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:5/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://mpstilaknagarjaipur.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpstilaknagarjaipur.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpstilaknagarjaipur.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpstilaknagarjaipur.com/fee-structure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://knowledgecityalwar.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://knowledgecityalwar.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.knowledgecityalwar.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://knowledgecityalwar.com/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.knowledgecityalwar.com/mandatory-public-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://knowledgecityalwar.com/mpd/feestru.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/robots.txt "HTTP/2 302 Found"
+INFO:httpx:HTTP Request: GET https://www.tagoreedu.in/ "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/mandatory.php "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:TAGORE INTERNATIONAL SR. SEC. SCHOOL, SIKAR: https://tagoreedu.in/mandatory.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://tagoreedu.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in/mpd.php "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:GURUKRIPA SENIOR SECONDARY SCHOOL BAORI: https://gpsreengus.ac.in/mpd.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsreengus.ac.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:VIDHYALAKSHMI SCHOOL: discovery failed: vidhyalakshmi.edu.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:10/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://clunypublicschoolneyveli.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://clunypublicschoolneyveli.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://clunypublicschoolneyveli.com/mandatory-public-disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://clunypublicschoolneyveli.com/pdf/25-26/fee-structure.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org/mandatory-public-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org/public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://aksaravidhyamandir.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SUGHAR SINGH ACADEMY: discovery failed: ssakoylanagar.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:15/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com/mandatory-public-disclosure.php "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:BHAGIRATH PUBLIC SCHOOL: https://bhagirathpublicschool.com/mandatory-public-disclosure.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bhagirathpublicschool.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://kkpskht.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://kkpskht.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kkpskht.in/mpd.php "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kkpskht.in/doc/6.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:20/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:ST. MICHALS ACADEMY ENGLISH MEDIUM: discovery failed: stmichaelsbth.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:FOUNDATION ACADEMY: discovery failed: foundationacademyiitpatna.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://cjis.org.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://cjis.org.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://cjis.org.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://cjis.org.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://cjis.org.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://cjis.org.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bishopeastcottschool.in/robots.txt "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:25/29 processed, 0 fees found
+INFO:school_intel.extract.mpd.run:AMBUJA VIDYA NIKETAN: discovery failed: Invalid port: 'ambujavidyaniketan.in'
+INFO:httpx:HTTP Request: GET https://gemsinternationalschoolgurgaon.com/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gemsinternationalschoolgurgaon.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:GEMS INTERNATIONAL SCHOOL: https://www.gemsinternationalschoolgurgaon.com/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://gemsinternationalschoolgurgaon.com/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:GEMS INTERNATIONAL SCHOOL: https://gemsinternationalschoolgurgaon.com/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://gemsinternationalschoolgurgaon.com/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gemsinternationalschoolgurgaon.com/public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.gemsinternationalschoolgurgaon.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://neweramadlauda.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://neweramadlauda.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://neweramadlauda.in/mandate.php "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://neweramadlauda.in/fee.php "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://teripublicschool.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://teripublicschool.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://s666t5.net/ "HTTP/2 522 "
+{
+  "considered": 29,
+  "outcomes": {
+    "error": 7,
+    "found_fee": 6,
+    "not_found": 11,
+    "dead_origin": 5
+  },
+  "fee_found": 0,
+  "fee_from_ocr": 0,
+  "unreadable_fee": 3,
+  "strength_found": 0,
+  "contacts_found": 18,
+  "student_data_blocked": 0,
+  "review_raised": 0,
+  "fee_coverage_pct": 0.0
+}
+=== chunk 102/400 ===
+INFO:school_intel.extract.mpd.run:enriching 29 schools
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SANT KARAM SINGH ACADEMY: discovery failed: sksaroopnagar.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SHRI GURU NANAK DEV ACADEMY,: discovery failed: sgndakandial.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://gndpschool.com/robots.txt "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://gndpschool.com "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://gndpschool.com/mandatory-disclosure "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://gndpschool.com/mandatory-public-disclosure "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://gndpschool.com/public-disclosure "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://gndpschool.com/cbse/mandatory-disclosure "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://sgrdpublicschool.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://sgrdpublicschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sgrdpublicschool.com/mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sgrdpublicschool.com/documents/Fee-Details.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:5/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://mbischool.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mbischool.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mbischool.in/mandatory-public-disclosure/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:MBI SENIOR SECONDARY SCHOOL: https://mbischool.in/mandatory-public-disclosure/ belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://mbischool.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://mbischool.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://mbischool.in/mandatory-public-disclosure/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:MBI SENIOR SECONDARY SCHOOL: https://mbischool.in/mandatory-public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://mbischool.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aimacademychittorgarh.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aimacademychittorgarh.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aimacademychittorgarh.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aimacademychittorgarh.com/assets/uploads/documents/fee_structure_2026_27_1787491541.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://jephinternationalschool.com/robots.txt "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.jephinternationalschool.com/robots.txt "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/robots.txt "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://jephinternationalschool.com "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.jephinternationalschool.com/ "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/robots.txt "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/recognition "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://jephinternationalschool.com/mandatory-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.jephinternationalschool.com/mandatory-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/mandatory-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://jephinternationalschool.com/mandatory-public-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.jephinternationalschool.com/mandatory-public-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/mandatory-public-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://jephinternationalschool.com/public-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.jephinternationalschool.com/public-disclosure "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.jephinternationalschool.com/public-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:VIDHYALAKSHMI SCHOOL: discovery failed: vidhyalakshmi.edu.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:10/29 processed, 2 fees found
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/mandatory-public-disclosure.php "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SHRI NATARAJAN MEMORIAL PUBLIC SCHOOL: https://snmpublicschool.com/mandatory-public-disclosure.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SHRI NATARAJAN MEMORIAL PUBLIC SCHOOL: https://snmpublicschool.com/mandatory-public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://snmpublicschool.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://ponjeslycbse.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ponjeslycbse.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ponjeslycbse.org/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.ponjesly.ac.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.ponjesly.ac.in/NAAC/CBSE/Fee%2026-27.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://srividyamandircbse.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://srividyamandircbse.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.srividyamandircbse.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.srividyamandircbse.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.srividyamandircbse.com/mandatorypublicdisclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.srividyamandircbse.com/fee-structure-of-the-school "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SUGHAR SINGH ACADEMY: discovery failed: ssakoylanagar.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in/mandatory-disclosure-details-saras-4-0-2/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://schoolkr.gagan.ac.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:15/29 processed, 2 fees found
+INFO:httpx:HTTP Request: GET https://amacademy.edu.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://amacademy.edu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://amacademy.edu.in/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://amacademy.edu.in/a/m/fee-structure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org/cbse-mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:PT. HUKAM SINGH - RADHEY LAL INDIAN PUBLIC SCHOOL: https://pipsvrindavan.org/cbse-mandatory-disclosure.html belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://pipsvrindavan.org/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:20/29 processed, 3 fees found
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:ST. MICHALS ACADEMY ENGLISH MEDIUM: discovery failed: stmichaelsbth.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:FOUNDATION ACADEMY: discovery failed: foundationacademyiitpatna.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://vbpsg.com/robots.txt "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.vbpsg.com/robots.txt "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://vbpsg.com "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.vbpsg.com/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://vbpsg.com/images/pdf/disclosur.pdf "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.vbpsg.com/images/pdf/disclosur.pdf "HTTP/1.1 200 OK"
+INFO:school_intel.extract.mpd.run:25/29 processed, 3 fees found
+INFO:school_intel.extract.mpd.run:AMBUJA VIDYA NIKETAN: discovery failed: Invalid port: 'ambujavidyaniketan.in'
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com/disclosure.html "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:VATS VIDYA MANDIR HIGH SCHOOL,: https://vatsvidyamandir.com/disclosure.html belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://vatsvidyamandir.com/public-disclosure "HTTP/2 200 OK"
+{
+  "considered": 29,
+  "outcomes": {
+    "error": 7,
+    "not_found": 10,
+    "found_fee": 6,
+    "dead_origin": 6
+  },
+  "fee_found": 3,
+  "fee_from_ocr": 0,
+  "unreadable_fee": 1,
+  "strength_found": 0,
+  "contacts_found": 16,
+  "student_data_blocked": 0,
+  "review_raised": 0,
+  "fee_coverage_pct": 10.3
+}
+=== chunk 103/400 ===
+INFO:school_intel.extract.mpd.run:enriching 29 schools
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SANT KARAM SINGH ACADEMY: discovery failed: sksaroopnagar.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SHRI GURU NANAK DEV ACADEMY,: discovery failed: sgndakandial.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://falconinternationalschool.com/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://mhrpublicschool.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mhrpublicschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mhrpublicschool.com/assets/pdf/mandatory-disclosure.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:5/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://kvpskota.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://kvpskota.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kvpskota.com/mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kvpskota.com/mandatory-disclosure/fees-structure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://awsajmer.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://awsajmer.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://awsajmer.in/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://awsajmer.in/feestructure.php "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mayoorschooljaipur.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mayoorschooljaipur.org "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.mayoorschooljaipur.org/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mayoorschooljaipur.org/mandatory-disclosures "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.mayoorschooljaipur.org/mandatory-disclosures "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mayoorschooljaipur.org/mandatory-disclosures "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.mayoorschooljaipur.org/mandatory-disclosures "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:VIDHYALAKSHMI SCHOOL: discovery failed: vidhyalakshmi.edu.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:10/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://stmarysmariagiri.edu.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://stmarysmariagiri.edu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.stmarysmariagiri.edu.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://www.stmarysmariagiri.edu.in/Mandatory%20Disclosure%20Details%20_%20SARAS%204.0.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rudraschools.org/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.rudraschools.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rudraschools.org "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.rudraschools.org/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rudraschools.org/disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.rudraschools.org/disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://cdn.prod.website-files.com/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://cdn.prod.website-files.com/6687c5252b93bed7fcf1c418/69d6018696c0ae9669112f2c_Fees-2026-27.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://snvglobal.edu.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://snvglobal.edu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://snvglobal.edu.in/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://drive.google.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://drive.google.com/file/d/1ogp1hS5fTddegMNSzCs0OL_5OrD8PEPM/view?usp=drive_link "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SUGHAR SINGH ACADEMY: discovery failed: ssakoylanagar.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://suditiglobalacademy.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://suditiglobalacademy.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://suditiglobalacademy.com/pdf/MANDATORY_PUBLIC_DISCLOSURE_2027.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:15/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://mmdps.org/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://mmdps.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mmdps.org/images/pc/MandatoryDisclosure.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:20/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:ST. MICHALS ACADEMY ENGLISH MEDIUM: discovery failed: stmichaelsbth.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:FOUNDATION ACADEMY: discovery failed: foundationacademyiitpatna.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://spapagra.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://spapagra.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://spapagra.com/mendatory_disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://spapagra.com/downloads/C-1.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tpsbela.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://tpsbela.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tpsbela.com/mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://tpsbela.com/fee-structure.html "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:25/29 processed, 2 fees found
+INFO:school_intel.extract.mpd.run:AMBUJA VIDYA NIKETAN: discovery failed: Invalid port: 'ambujavidyaniketan.in'
+INFO:httpx:HTTP Request: GET https://gmmcs.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gmmcs.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gmmcs.in/mandatory.php "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gmmcs.in/cbse/Fee%20Structure.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://disbutana.com/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.disbutana.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://disbutana.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.disbutana.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://disbutana.com/Mandatory_Public_Disclosure.aspx "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.disbutana.com/Mandatory_Public_Disclosure.aspx "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://apsagroha.com/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.apsagroha.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://apsagroha.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.apsagroha.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://apsagroha.com/mandatory-disclosure/PTA.pdf "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.apsagroha.com/mandatory-disclosure/PTA.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://svpsindri.com/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://svpsindri.com "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://svpsindri.com/Mandatory_Public_Disclosure.aspx "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/Mandatory_Public_Disclosure.aspx "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SARV VIDYA PUBLIC SCHOOL,MATAK MAJRI,INDRI(KARNAL): https://svpsindri.com/Mandatory_Public_Disclosure.aspx belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://svpsindri.com/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://svpsindri.com/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://svpsindri.com/public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.svpsindri.com/public-disclosure "HTTP/2 404 Not Found"
+{
+  "considered": 29,
+  "outcomes": {
+    "error": 7,
+    "not_found": 5,
+    "found_fee": 13,
+    "dead_origin": 3,
+    "found_index": 1
+  },
+  "fee_found": 3,
+  "fee_from_ocr": 0,
+  "unreadable_fee": 2,
+  "strength_found": 1,
+  "contacts_found": 22,
+  "student_data_blocked": 0,
+  "review_raised": 0,
+  "fee_coverage_pct": 10.3
+}
+=== chunk 104/400 ===
+INFO:school_intel.extract.mpd.run:enriching 29 schools
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SANT KARAM SINGH ACADEMY: discovery failed: sksaroopnagar.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SHRI GURU NANAK DEV ACADEMY,: discovery failed: sgndakandial.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sbsludhiana.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sbsludhiana.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET http://sbsludhiana.com/robots.txt "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://sbsludhiana.com/mandatory-public-disclosure "HTTP/1.1 200 OK"
+INFO:school_intel.sources.cbse_mpd:SPRING BELLS DAY BOARDING SENIOR SECONDARY SCHOOL: http://sbsludhiana.com/mandatory-public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://sbsludhiana.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://sbsludhiana.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SPRING BELLS DAY BOARDING SENIOR SECONDARY SCHOOL: https://sbsludhiana.com/mandatory-public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://sbsludhiana.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://maharanapartapschoolpathankot.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://maharanapartapschoolpathankot.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://maharanapartapschoolpathankot.com/wp-content/uploads/2025/01/Mandatory-Disclosure-Details-_-SARAS-5-1.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:5/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://bostonschooldpr.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bostonschooldpr.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bostonschooldpr.com/wp-content/uploads/2025/07/Mandatory-Disclosure-1.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com/mandatory_disclosures.php "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:GUDHA PUBLIC SCHOOL: https://gpsnkt.gudhaeducationhub.com/mandatory_disclosures.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://gpsnkt.gudhaeducationhub.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://bisjaipur.edu.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DIAMOND ACADEMY SSS: https://diamondacademyjodhpur.in/mandatory-public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/mandatory-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DIAMOND ACADEMY SSS: https://diamondacademyjodhpur.in/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in/public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/public-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DIAMOND ACADEMY SSS: https://diamondacademyjodhpur.in/public-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://diamondacademyjodhpur.in/cbse/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://www.diamondacademyjodhpur.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:VIDHYALAKSHMI SCHOOL: discovery failed: vidhyalakshmi.edu.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:10/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://velammal.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://velammal.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://velammal.org/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://velammal.org/velammal-vidhyashram-surapet/mandatory-disclosure-surapet/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com/public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://adithyaglobalschool.com/cbse/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SUGHAR SINGH ACADEMY: discovery failed: ssakoylanagar.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://dsmlps.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dsmlps.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dsmlps.com/mandatory-public-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dsmlps.com/wp-content/uploads/2026/05/FEE-STRUCTURE-2026-27.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:15/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com/cbse-disclosure.php "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SILVER STONE PUBLIC SCHOOL: https://silverstoneschools.com/cbse-disclosure.php belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://silverstoneschools.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/mandatory-disclosures/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SARVODAY PULIC SCHOOL: https://sarvodayapublicschool.in/mandatory-disclosures/ belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/mandatory-disclosures/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:SARVODAY PULIC SCHOOL: https://sarvodayapublicschool.in/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://sarvodayapublicschool.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:20/29 processed, 1 fees found
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://stmichaelsbth.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.stmichaelsbth.in/index.php/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:ST. MICHALS ACADEMY ENGLISH MEDIUM: discovery failed: stmichaelsbth.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.foundationacademyiitpatna.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:FOUNDATION ACADEMY: discovery failed: foundationacademyiitpatna.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://djpsmadhepura.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:25/29 processed, 1 fees found
+INFO:school_intel.extract.mpd.run:AMBUJA VIDYA NIKETAN: discovery failed: Invalid port: 'ambujavidyaniketan.in'
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://motherindiaschools.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com/manadate.htm "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:ARYA SR. SEC. SCHOOL: https://aryaschooljjk.com/manadate.htm belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com/mandatory.html "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://aryaschooljjk.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com/mandatory "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:KUNDAN GREEN VALLEY PARADISE: https://kundangreenvalleyschool.com/mandatory belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://kundangreenvalleyschool.com/public-disclosure "HTTP/2 200 OK"
+{
+  "considered": 29,
+  "outcomes": {
+    "error": 7,
+    "not_found": 15,
+    "found_fee": 3,
+    "found_index": 1,
+    "dead_origin": 3
+  },
+  "fee_found": 1,
+  "fee_from_ocr": 0,
+  "unreadable_fee": 0,
+  "strength_found": 0,
+  "contacts_found": 16,
+  "student_data_blocked": 0,
+  "review_raised": 0,
+  "fee_coverage_pct": 3.4
+}
+=== chunk 105/400 ===
+INFO:school_intel.extract.mpd.run:enriching 29 schools
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sksaroopnagar.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SANT KARAM SINGH ACADEMY: discovery failed: sksaroopnagar.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://sgndakandial.org/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SHRI GURU NANAK DEV ACADEMY,: discovery failed: sgndakandial.org has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in/robots.txt "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in/mandatory-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in/mandatory-public-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in/public-disclosure "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://smalsaruniqueschool.in/cbse/mandatory-disclosure "HTTP/1.1 404 Not Found"
+INFO:school_intel.extract.mpd.run:5/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://mpschachiyawasajmer.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpschachiyawasajmer.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpschachiyawasajmer.com/cbse/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://mpschachiyawasajmer.com/storage/2025/12/FOR-2026-27.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/pages/mandatory-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DELHI PUBLIC SCHOOL ABUROAD: https://dpsaburoad.com/pages/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/pages/mandatory-disclosure "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DELHI PUBLIC SCHOOL ABUROAD: https://dpsaburoad.com/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://dpsaburoad.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://apschirawa.com/robots.txt "HTTP/2 503 Service Unavailable"
+INFO:httpx:HTTP Request: GET https://apschirawa.com "HTTP/2 503 Service Unavailable"
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dunesacademy.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DUNES ACADEMY: https://dunesacademy.com/mandatory-disclosure/ belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/mandatory-disclosure/ "HTTP/2 200 OK"
+INFO:school_intel.sources.cbse_mpd:DUNES ACADEMY: https://dunesacademy.com/mandatory-disclosure belongs to another school; skipping
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://dunesacademy.com/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/robots.txt "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-disclosure "HTTP/2 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://vidhyalakshmi.edu.in/mandatory-public-disclosure "HTTP/2 403 Forbidden"
+INFO:school_intel.extract.mpd.run:VIDHYALAKSHMI SCHOOL: discovery failed: vidhyalakshmi.edu.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:school_intel.extract.mpd.run:10/29 processed, 0 fees found
+INFO:httpx:HTTP Request: GET https://sbioainternationalschool.org/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sbioainternationalschool.org "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sbioainternationalschool.org/disclosure/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://sbioainternationalschool.org/wp-content/uploads/2026/05/DocScanner-May-8-2026-1-58-PM-1.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rkngyanjothipublicschool.com/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://rkngyanjothipublicschool.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rkngyanjothipublicschool.com/mandatory-disclosure.html "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://rkngyanjothipublicschool.com/images/fee-structure-fo-2021-2022-accademic%28R1%29.pdf "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://srichaitanyatechnoschoolhosurbagalurroad.net/robots.txt "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://srichaitanyatechnoschoolhosurbagalurroad.net "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://srichaitanyatechnoschoolhosurbagalurroad.net/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://srichaitanyatechnoschoolhosurbagalurroad.net/index.php/Welcome/submenudata/116 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/robots.txt "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/robots.txt "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/ "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-disclosure "HTTP/1.1 403 Forbidden"
+INFO:httpx:HTTP Request: GET https://ssakoylanagar.in/mandatory-public-disclosure "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://www.ssakoylanagar.in/mandatory-public-disclosure "HTTP/1.1 403 Forbidden"
+INFO:school_intel.extract.mpd.run:SUGHAR SINGH ACADEMY: discovery failed: ssakoylanagar.in has served 3 consecutive bot checks; stopping. Lower rate_limit_rps for this source and resume later.
+INFO:httpx:HTTP Request: GET https://babagurukul.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://babagurukul.com "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET http://babagurukul.com/robots.txt "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://babagurukul.com/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET http://babagurukul.com/mandatory-disclosures/ "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://babagurukul.com/mandatory-disclosures/ "HTTP/2 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET http://babagurukul.com/wp-content/uploads/2025/06/Mandatory-Disclosure-Details-_-SARAS-6.0.pdf "HTTP/1.1 301 Moved Permanently"
+INFO:httpx:HTTP Request: GET https://babagurukul.com/wp-content/uploads/2025/06/Mandatory-Disclosure-Details-_-SARAS-6.0.pdf "HTTP/2 200 OK"
+INFO:school_intel.extract.mpd.run:15/29 processed, 2 fees found
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in/robots.txt "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in/mandatory-public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in/public-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://prasadpublic.co.in/cbse/mandatory-disclosure "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/robots.txt "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/cbse/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:school_intel.extract.mpd.run:20/29 processed, 2 fees found
+INFO:httpx:HTTP Request: GET https://edudel.nic.in "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/mandatory-public-disclosure "HTTP/2 404 Not Found"
+INFO:httpx:HTTP Request: GET https://edudel.nic.in/public-disclosure "HTTP/2 404 Not Found"

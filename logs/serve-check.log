@@ -1,0 +1,20 @@
+INFO:     Started server process [30568]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:62164 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61949 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53474 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58785 - "GET /state/karnataka HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58785 - "GET /state/karnataka?contact=verified&class12=any HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57167 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63886 - "GET /state/foreign%20schools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50706 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49259 - "GET /search?q=tribhuvan HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49259 - "GET /search?q=dps HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53392 - "GET /city?q=nag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49747 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61234 - "GET /api/docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61234 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51994 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51994 - "GET /favicon.ico HTTP/1.1" 404 Not Found

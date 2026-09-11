@@ -35,10 +35,14 @@ echo "   local institutions: $LOCAL_COUNT"
 
 echo "2. Restoring into the target (schema + data; no owner/privilege changes,"
 echo "   since the target's role name will not match 'school_intel')"
+# Copied into the container and restored from there, rather than piped over
+# stdin - `docker compose exec -T` stdin forwarding mangled the binary dump
+# on Windows/Git Bash.
+docker compose cp "$DUMP" db:/tmp/migrate_restore.dump
 docker compose exec -T -e TARGET_DATABASE_URL db \
   pg_restore --no-owner --no-acl --clean --if-exists \
-  --dbname="$TARGET_DATABASE_URL" "/dev/stdin" < "$DUMP" \
-  2> >(grep -v "^pg_restore: warning: errors ignored on restore" >&2 || true)
+  --dbname="$TARGET_DATABASE_URL" /tmp/migrate_restore.dump
+docker compose exec -T db rm -f /tmp/migrate_restore.dump
 
 echo "3. Verifying the target actually has the data (not just an exit 0)"
 REMOTE_COUNT=$(docker compose exec -T -e TARGET_DATABASE_URL db \

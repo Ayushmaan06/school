@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}School Intelligence{% endblock %} · Tensor</title>
+<style>
+  :root {
+    --ink: #1b2330; --muted: #6b7683; --line: #e3e7ec; --bg: #f7f9fb;
+    --card: #ffffff; --accent: #1f6feb; --accent-soft: #e8f0fe;
+    --good: #17803d; --warn: #9a6700; --none: #b4bcc5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    background: var(--card); border-bottom: 1px solid var(--line);
+    padding: 14px 22px; display: flex; gap: 22px; align-items: center;
+    position: sticky; top: 0; z-index: 5;
+  }
+  header a.brand { font-weight: 650; color: var(--ink); text-decoration: none; }
+  header nav { margin-left: auto; display: flex; gap: 16px; align-items: center; }
+  header nav a { color: var(--muted); text-decoration: none; }
+  header nav a:hover { color: var(--accent); }
+  main { max-width: 1180px; margin: 0 auto; padding: 22px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 14px; min-width: 108px;
+  }
+  .stat b { display: block; font-size: 19px; }
+  .stat span { color: var(--muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  tr:hover td { background: #fbfcfe; }
+  .wrap { border: 1px solid var(--line); border-radius: 10px; overflow: auto; }
+  a { color: var(--accent); }
+  .none { color: var(--none); }
+  .est { color: var(--warn); }
+  .chip {
+    display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px;
+    background: var(--accent-soft); color: #1a4f9c; margin-right: 4px;
+  }
+  .chip.weak { background: #fff4e0; color: #8a5a00; }
+  .filters { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+  .flabel { font-size: 11px; color: var(--muted); text-transform: uppercase;
+    letter-spacing: .04em; margin: 0 2px 0 10px; }
+  .flabel:first-child { margin-left: 0; }
+  .pill {
+    font-size: 12px; padding: 4px 11px; border-radius: 999px; text-decoration: none;
+    border: 1px solid var(--line); color: var(--muted); background: var(--card);
+  }
+  .pill.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  form.inline { display: flex; gap: 8px; align-items: center; }
+  input[type=text], input[type=number] {
+    padding: 8px 10px; border: 1px solid var(--line); border-radius: 7px; font: inherit;
+  }
+  button {
+    padding: 8px 14px; border: 0; border-radius: 7px; background: var(--accent);
+    color: #fff; font: inherit; cursor: pointer;
+  }
+  button.ghost { background: var(--card); color: var(--accent); border: 1px solid var(--line); }
+  .note {
+    background: #fffbe8; border: 1px solid #f0e2b6; border-radius: 8px;
+    padding: 10px 14px; margin-bottom: 16px; font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">Tensor · School Intelligence</a>
+  <form class="inline" action="/search" method="get">
+    <input type="text" name="q" placeholder="School name — dps, kendriya vidyalaya…" value="{{ scope_value if scope_kind == 'name' else '' }}" style="min-width:230px">
+    <button class="ghost" type="submit">Search</button>
+  </form>
+  <form class="inline" action="/city" method="get">
+    <input type="text" name="q" placeholder="City or district…" value="{{ scope_value if scope_kind == 'city' else '' }}">
+    <button class="ghost" type="submit">Go</button>
+  </form>
+  <nav>
+    <a href="/">Map</a>
+    <a href="/api/docs">API</a>
+  </nav>
+</header>
+<main>{% block body %}{% endblock %}</main>
+</body>
+</html>

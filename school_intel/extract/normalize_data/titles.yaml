@@ -1,0 +1,45 @@
+# Maps to roles.title_normalized. title_raw is ALWAYS kept alongside
+# (Project-Doc 6.8) - the raw string is evidence, this is only for filtering.
+principal:
+  - principal
+  - head master
+  - headmaster
+  - head mistress
+  - headmistress
+  - head of school
+  - head of institution
+  - school head
+vice_principal:
+  - vice principal
+  - deputy principal
+  - asst principal
+  - assistant principal
+career_counsellor:
+  - career counsellor
+  - career counselor
+  - career guidance
+  - career guidance counsellor
+  - counsellor
+  - counselor
+academic_coordinator:
+  - academic coordinator
+  - academic head
+  - academic director
+  - coordinator senior secondary
+  - senior secondary coordinator
+  - academic incharge
+director:
+  - director
+  - executive director
+  - managing director
+  - ceo
+  - chief executive officer
+trustee:
+  - trustee
+  - chairman
+  - chairperson
+  - chairwoman
+  - secretary
+  - correspondent
+  - president
+  - manager

@@ -1,0 +1,18 @@
+# Dropped from the MATCH KEY only - never from canonical_name, which is what a
+# human reads. "school" carries no discriminating information when every row is
+# a school.
+- school
+- academy
+- institution
+- institute
+- education
+- educational
+- college
+- campus
+- branch
+- the
+- public
+- high
+- higher
+- secondary
+- senior

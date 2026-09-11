@@ -1,0 +1,12 @@
+institution_key,field,expected,verified_by,verified_at,note
+cbse:830375,fee_annual_inr,138600,claude,2026-09-05,"Vagdevi Vilas. SCANNED PDF - read via OCR then checked by eye. Row 'XI TO XII' instalments 55500+27700+27700+27700, TOTAL column 138600."
+cbse:830375,fee_year,2024,claude,2026-09-05,"'FEE STRUCTURE FOR THE ACADEMIC YEAR 2024-25'"
+cbse:830127,fee_annual_inr,74080,claude,2026-09-05,"Lake Montfort. Text PDF. Class 12 rows: PCMC 74080, PCMB 74510, ABEC 70830, ABEM 71300. PCMC is the PCM stream this ICP wants; PCMB is within the 5% tolerance."
+cbse:830127,fee_year,2023,claude,2026-09-05,"'SCHOOL FEE FOR 2023-2024'"
+cbse:830395,fee_annual_inr,174900,claude,2026-09-05,"New Horizon Gurukul. TWO instalment tables. 'XI & XII (Science)' 79900 (1st) + 95000 (2nd) = 174900. Either alone would cross an affordability band."
+cbse:830395,fee_year,2026,claude,2026-09-05,"'The school fee for 2026-27 is as under'"
+cbse:830316,fee_annual_inr,80500,claude,2026-09-05,"Vyasa International. SENIOR SECONDARY row: tuition yearly 78000 + other annual 2500 = 80500. Admission fee 10000 is ONE-OFF and excluded per docs/ENTITY-RESOLUTION.md. Parser currently MISSES this document."
+cbse:830316,fee_year,2023,claude,2026-09-05,"'FEE STRUCTURE 2023-24'"
+cbse:830567,fee_annual_inr,170000,claude,2026-09-05,"NPS Gottigere. Tuition fee, highest published band 'IX - XI' = 170000. NOTE: the document publishes NO class XII row, so this is the nearest senior figure and not strictly a class-12 fee."
+cbse:820080,fee_annual_inr,182000,claude,2026-09-05,"Kranthiveera Sangolli Rayanna Sainik School. 'Fee Breakup for AY 2026-27': Annual Tuition Fee 116525, Total Fees 182000. Max = all recurring annual components."
+cbse:820080,fee_year,2026,claude,2026-09-05,"'Fee Breakup for AY 2026-27'"

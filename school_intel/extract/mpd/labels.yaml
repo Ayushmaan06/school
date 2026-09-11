@@ -1,0 +1,234 @@
+# Appendix-IX label synonyms. THE main maintenance surface for S2.
+#
+# Proforma wording varies between schools, so this list grows every time a
+# non-conforming page turns up. Adding a synonym is a config edit, never a code
+# change.
+#
+# Matching is WHITESPACE-INSENSITIVE on both sides. [VERIFIED M0-0] OCR of a
+# scanned fee table emits "XITOXII" and "MAY2024" with the spaces dropped, so a
+# space-sensitive comparison misses every label on an OCR'd document.
+
+fee_structure_link:
+  # On the compliant proforma this row holds a LINK, not a value. Tier 1 takes
+  # the href from the matched row; the figure lives in the linked document.
+  - fee structure of the school
+  - fee structure
+  - fees structure
+  - fee details
+  - school fee structure
+
+fee_annual_inr:
+  - fee structure
+  - fees structure
+  - annual fee
+  - annual fees
+  - fee details
+  - school fee
+  - school fees
+  - total fee
+  - total fees
+  - tuition fee
+  - fee particulars
+  # Bare "fees" catches instalment table headers like "1st Installment Fees".
+  - fees
+
+# A table whose header says students PASSED is a board-result summary, not a
+# class-wise strength table. [VERIFIED M2-2] vvi.edu.in publishes
+# "NO. OF REGISTERED STUDENTS | NO. OF STUDENTS PASSED | PASS PERCENTAGE",
+# which matches a strength label but is a completely different number.
+result_table_header:
+  - students passed
+  - pass percentage
+  - no. of students passed
+  - result analysis
+
+# Fees published as instalments across SEPARATE tables, not columns.
+# [VERIFIED M2-2] newhorizongurukul.in publishes "1st Installment Fees" and
+# "2nd Installment Fees" as two tables; either alone understates the annual fee
+# by about half, which crosses affordability bands.
+instalment_header:
+  - installment
+  - instalment
+  - term fee
+  - 1st installment
+  - 2nd installment
+
+class_wise_strength:
+  - "no. of students"
+  - number of students
+  - student strength
+  - strength of students
+  - class wise enrolment
+  - class wise enrollment
+  - section wise enrolment
+  - section wise enrollment
+  - class wise strength
+  - total number of students
+
+total_enrollment:
+  - total students
+  - total strength
+  - total enrolment
+  - total enrollment
+
+email:
+  - email
+  - e-mail
+  - email id
+  - e mail
+  - school email
+
+phone:
+  - phone
+  - phone no
+  - contact no
+  - telephone
+  - mobile
+  - contact number
+
+principal_name:
+  - principal
+  - principal name
+  - name of principal
+  - head of school
+  - head of institution
+  - principal / head
+
+# Labels that CONTAIN "principal" but are not the name row. [VERIFIED M2-4] the
+# proforma row "PRINCIPAL QUALIFICATION | Msc, B.Ed" was extracted as a
+# principal_name of "qualification msc" - a wrong value, and a compliance
+# problem too: docs/COMPLIANCE.md purpose limitation says qualifications are not
+# stored at all.
+principal_name_reject:
+  - qualification
+  - experience
+  - signature
+  - photograph
+  - contact
+  - email
+  - mobile
+
+counsellor_name:
+  # Not in the Appendix-IX proforma, so this will be sparse. Accept that; do not
+  # build a speculative staff-page crawler for it.
+  - career counsellor
+  - career counselor
+  - counsellor
+  - counselor
+  - career guidance
+
+# Column headers inside a fee table. "TOTAL" matters most: [VERIFIED M0-0] fees
+# are published as instalments (55500 + 27700 x 3 = 138600), so the first figure
+# in a row is a different affordability band from the annual total.
+# A COLUMN header inside a table already established as a fee table. Bare
+# "total" is acceptable here only because the surrounding table is known to be
+# about fees.
+fee_total_column:
+  - total
+  - total fee
+  - total fees
+  - annual total
+  - grand total
+
+# A ROW label that means "this is the annual total". Bare "total" is NOT
+# acceptable here. [VERIFIED M2-4] "TOTAL CAMPUS AREA OF THE SCHOOL (IN SQ MTR)
+# 19070" matched a bare "total" and was reported as an annual fee - the same
+# class of bug as reading the affiliation number. The label must carry fee
+# meaning, not just the word total.
+fee_total_row:
+  - total fee
+  - total fees
+  - grand total
+  - annual total
+  - total amount
+  - total annual fee
+
+# Row labels that identify the class-11/12 science line, which is the exact
+# figure this ICP needs rather than a school-wide average.
+class_12_row:
+  - xi to xii
+  - xi & xii
+  - xi and xii
+  - class xi xii
+  - 11 to 12
+  - 11 & 12
+  - xii
+  - class xii
+  - class 12
+  - grade 12
+  - std xii
+
+pcm_stream_row:
+  - pcm
+  - pcmc
+  - pcmb
+  - science
+  - pcm science
+  - phy chem maths
+
+# Row labels whose numbers are NEVER money. [VERIFIED M4-2] the ranked list
+# surfaced "fees" of 202024, 202025, 202026 and 831088 - the first three were
+# academic years scraped out of URL-encoded filenames, the fourth an affiliation
+# number sitting in a table that also had fee rows.
+not_money_row:
+  - affiliation no
+  - affiliation number
+  - affiliation details
+  - registration no
+  - registration number
+  - school code
+  - pin code
+  - pincode
+  - contact details
+  - phone
+  - mobile
+  - landline
+  - campus area
+  - area of the school
+  - sq mtr
+  - sq.mtr
+  - year of establishment
+  - established
+  - udise
+
+# --- fields surveyed off 120 real MPD pages (M5) -------------------------
+# The proforma publishes more than fees and contacts, and the sales team wants
+# as much context as we can get.
+
+total_teachers:
+  - total no. of teachers
+  - total number of teachers
+  - total teachers
+  - no. of teachers
+  - number of teachers
+  - total no of teaching staff
+  - teaching staff
+
+teacher_section_ratio:
+  - teachers section ratio
+  - teacher section ratio
+  - teacher student ratio
+  - student teacher ratio
+
+counsellor_name:
+  - details of counsellor and wellness teacher
+  - counsellor and wellness teacher
+  - career counsellor
+  - career counselor
+  - wellness teacher
+  - counsellor
+  - counselor
+
+pincode:
+  - complete address with pin code
+  - address with pin code
+  - pin code
+  - pincode
+
+total_enrollment:
+  - total students
+  - total strength
+  - total enrolment
+  - total enrollment
+  - total no. of students
+  - total number of students on roll

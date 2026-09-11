@@ -1,0 +1,49 @@
+# Approximate centroid of each state, used to place the map bubbles.
+#
+# Real coordinates projected linearly onto the SVG, so the bubbles form the
+# actual shape of India rather than a hand-arranged diagram. Editable config -
+# nudge a value if a label collides with its neighbour.
+#
+# Names match `institutions.state` as SARAS spells them (lowercased), including
+# its own spellings: "chattisgarh", "tamilnadu", "odisha".
+
+"andaman and nicobar": [11.7, 92.7]
+"andhra pradesh": [15.9, 79.7]
+"arunachal pradesh": [28.2, 94.7]
+assam: [26.2, 92.9]
+bihar: [25.1, 85.3]
+chandigarh: [30.7, 76.8]
+chattisgarh: [21.3, 81.9]
+"dadar & nagar haveli": [20.2, 73.0]
+"daman & diu": [20.4, 72.8]
+delhi: [28.7, 77.1]
+"foreign schools": [8.5, 70.0]
+goa: [15.3, 74.1]
+gujarat: [22.3, 71.2]
+haryana: [29.1, 76.1]
+"himachal pradesh": [31.8, 77.2]
+"jammu and kashmir": [33.8, 76.6]
+"jammu & kashmir": [33.8, 76.6]
+jharkhand: [23.6, 85.3]
+karnataka: [15.3, 75.7]
+kerala: [10.5, 76.3]
+ladakh: [34.5, 77.6]
+lakshadweep: [10.6, 72.6]
+"madhya pradesh": [23.5, 78.5]
+maharashtra: [19.7, 75.7]
+manipur: [24.7, 93.9]
+meghalaya: [25.5, 91.4]
+mizoram: [23.2, 92.9]
+nagaland: [26.2, 94.5]
+odisha: [20.9, 85.1]
+orissa: [20.9, 85.1]
+puducherry: [11.9, 79.8]
+punjab: [31.1, 75.3]
+rajasthan: [27.0, 74.2]
+sikkim: [27.5, 88.5]
+tamilnadu: [11.1, 78.7]
+telangana: [17.9, 79.1]
+tripura: [23.9, 91.7]
+"uttar pradesh": [26.8, 80.9]
+uttarakhand: [30.1, 79.0]
+"west bengal": [22.9, 87.9]

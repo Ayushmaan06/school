@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}India map{% endblock %}
+{% block body %}
+<h1>Schools by state</h1>
+<p class="sub">Bubble size is the number of schools. Click a state to see its
+schools and contact details.</p>
+
+<div class="stats">
+  <div class="stat"><b>{{ "{:,}".format(totals.schools) }}</b><span>schools</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.senior_secondary) }}</b><span>with class 12</span></div>
+  <div class="stat"><b>{{ totals.states }}</b><span>states</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.with_website) }}</b><span>websites</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.with_phone) }}</b><span>phone</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.with_email) }}</b><span>email</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.with_fee) }}</b><span>fee known</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.with_students) }}</b><span>student count</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.contactable) }}</b><span>contactable</span></div>
+  <div class="stat"><b>{{ "{:,}".format(totals.strongly_contactable) }}</b><span>strongly contactable</span></div>
+</div>
+
+<div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+  <div class="wrap" style="background:#fff; padding:8px;">
+    <svg viewBox="0 0 760 820" width="620" height="670" role="img"
+         aria-label="Map of India showing schools per state">
+      <g fill="#eef2f6" stroke="#c3cdd8" stroke-width="1">
+        {% for d in boundaries %}
+        <path d="{{ d }}"></path>
+        {% endfor %}
+      </g>
+      {% for p in points if p.x is not none %}
+        <a href="/state/{{ p.state }}">
+          <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}"
+                  fill="#1f6feb" fill-opacity="0.22" stroke="#1f6feb" stroke-width="1.2">
+            <title>{{ p.state|title }} — {{ p.summary.total }} schools,
+{{ p.summary.senior_secondary }} with class 12,
+{{ p.summary.with_phone }} phone, {{ p.summary.with_email }} email</title>
+          </circle>
+          <text x="{{ p.x }}" y="{{ p.y + 4 }}" text-anchor="middle"
+                font-size="11" font-weight="600" fill="#12325e">{{ p.summary.total }}</text>
+          {% if p.summary.total > 40 %}
+          <text x="{{ p.x }}" y="{{ p.y + p.r + 12 }}" text-anchor="middle"
+                font-size="10" fill="#6b7683">{{ p.state|title }}</text>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </svg>
+  </div>
+
+  <div style="flex:1; min-width:340px;">
+    <div class="wrap">
+      <table>
+        <thead><tr>
+          <th>State</th><th>Schools</th><th>Class 12</th>
+          <th>Phone</th><th>Email</th><th>Enriched</th>
+        </tr></thead>
+        <tbody>
+        {% for p in points %}
+          <tr>
+            <td><a href="/state/{{ p.state }}">{{ p.state|title }}</a></td>
+            <td>{{ p.summary.total }}</td>
+            <td>{{ p.summary.senior_secondary }}</td>
+            <td>{% if p.summary.with_phone %}{{ p.summary.with_phone }}{% else %}<span class="none">—</span>{% endif %}</td>
+            <td>{% if p.summary.with_email %}{{ p.summary.with_email }}{% else %}<span class="none">—</span>{% endif %}</td>
+            <td>{% if p.summary.enriched %}{{ p.summary.enriched }}{% else %}<span class="none">not yet</span>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:10px">
+      <b>Enriched</b> means we have visited the school's own website for phone,
+      email, fee and student numbers. States showing “not yet” have the registry
+      directory only — open the state and use <b>Get more details</b>.
+    </p>
+  </div>
+</div>
+{% endblock %}

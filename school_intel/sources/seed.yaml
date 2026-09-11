@@ -1,0 +1,112 @@
+# Source registry seed. One row per S1-S9 in docs/SOURCES.md.
+#
+# A source not listed here must not be fetched. Adding one requires an ADR entry
+# and a compliance check (docs/SOURCES.md preamble).
+#
+# authority_tier: 1=govt/statutory 2=board/official 3=institution self-published
+#                 4=third party. Default tie-break in conflict resolution.
+# rate_limit_rps: *.gov.in gets 0.5 - government infrastructure, and
+#                 Project-Doc 6.12 was right that per-domain limits matter.
+
+- id: cbse_saras
+  kind: registry
+  authority_tier: 1
+  refresh_days: 30
+  # [VERIFIED M1-3] 0.5 rps triggered a CAPTCHA wall after ~150 detail pages.
+  # 0.1 rps (one every 10s) is what the detail endpoint tolerates; the list
+  # endpoint is ~38 requests total and never came close.
+  rate_limit_rps: 0.1
+  robots_ok: true
+  enabled: true
+  tos_note: >-
+    [VERIFIED 2026-09-05] No robots.txt (404), so no path is disallowed.
+    Akamai-style fingerprinting JS is injected. It does not gate the first ~150
+    requests, but sustained volume triggers a CAPTCHA interstitial titled
+    "Validation request" - see [VERIFIED M1-3] in docs/SOURCES.md S1. The
+    affiliated list is a POST with __RequestVerificationToken plus the
+    antiforgery cookie; ID1=D is the closed list only.
+
+- id: cbse_mpd
+  kind: institution_site
+  authority_tier: 3
+  refresh_days: 180
+  rate_limit_rps: 1.0
+  robots_ok: null
+  enabled: true
+  tos_note: >-
+    Statutorily mandated public disclosure on each school's own site. Robots is
+    checked per host at fetch time. This source touches arbitrary school
+    websites, so the ADR-006 denylist applies most strictly here.
+
+- id: cisce
+  kind: registry
+  authority_tier: 2
+  refresh_days: 90
+  rate_limit_rps: 1.0
+  robots_ok: null
+  enabled: true
+  tos_note: "[UNVERIFIED] Export shape unconfirmed; check for the ISC row specifically."
+
+- id: ib
+  kind: registry
+  authority_tier: 2
+  refresh_days: 90
+  rate_limit_rps: 1.0
+  robots_ok: null
+  enabled: true
+  tos_note: "[UNVERIFIED] ~250 rows; hand-verify the whole output. Only IB_DP clears the gate."
+
+- id: cambridge
+  kind: registry
+  authority_tier: 2
+  refresh_days: 90
+  rate_limit_rps: 1.0
+  robots_ok: null
+  enabled: true
+  tos_note: "[UNVERIFIED] IGCSE alone stops at class 10; require A-Level/AS for the gate."
+
+- id: udise
+  kind: registry
+  authority_tier: 1
+  refresh_days: 365
+  rate_limit_rps: 0.5
+  robots_ok: null
+  enabled: true
+  tos_note: >-
+    [UNVERIFIED] Angular SPA over JSON endpoints; capture the real URLs from
+    devtools before writing the importer. Government infrastructure - back off
+    hard on any 5xx.
+
+- id: group_directory
+  kind: group_site
+  authority_tier: 3
+  refresh_days: 90
+  rate_limit_rps: 1.0
+  robots_ok: null
+  enabled: true
+  tos_note: >-
+    First-party campus directories (ADR-008), which makes group resolution an
+    authoritative import rather than fuzzy brand matching.
+
+- id: serper
+  kind: search_api
+  authority_tier: 4
+  refresh_days: 3650
+  rate_limit_rps: 1.0
+  robots_ok: true
+  # Deliberately off. [VERIFIED M0-0] 99.1% of Karnataka senior-secondary rows
+  # already carry a website on the SARAS list page (534/539), so this source has
+  # almost nothing to do. Enabling it is a decision, not a default.
+  enabled: false
+  tos_note: >-
+    Permitted use is exactly one: finding a missing website. Never for
+    discovering institutions or gathering facts from snippets.
+
+- id: pin_centroids
+  kind: registry
+  authority_tier: 1
+  refresh_days: 36500
+  rate_limit_rps: 1.0
+  robots_ok: true
+  enabled: true
+  tos_note: "India Post PIN dataset. Load once; reload only on a district reorganisation."

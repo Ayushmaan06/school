@@ -1,0 +1,30 @@
+{
+  "extractor": "deterministic",
+  "fields": {
+    "fee_annual_inr": {
+      "correct": 0,
+      "coverage": 0.167,
+      "field": "fee_annual_inr",
+      "gold_count": 6,
+      "missing_in_system": 5,
+      "precision": 0.0,
+      "produced": 1,
+      "recall": 0.0,
+      "wrong": 1
+    },
+    "fee_year": {
+      "correct": 1,
+      "coverage": 0.2,
+      "field": "fee_year",
+      "gold_count": 5,
+      "missing_in_system": 4,
+      "precision": 1.0,
+      "produced": 1,
+      "recall": 0.2,
+      "wrong": 0
+    }
+  },
+  "gold_entities": 6,
+  "gold_without_institution": 0,
+  "run_date": "2026-09-05"
+}

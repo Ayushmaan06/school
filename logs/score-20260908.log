@@ -1,0 +1,3 @@
+groups=9 qualifying_campuses=0
+scored=24351 gated_out=9285 insufficient_data=40
+flags={'fee_unverified': 23898, 'streams_unknown': 24308, 'insufficient_data': 40, 'pcm_estimated': 3450, 'review_open': 344}

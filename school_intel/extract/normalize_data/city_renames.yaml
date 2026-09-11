@@ -1,0 +1,31 @@
+# Cities renamed in living memory. Sources lag by years, so both spellings are
+# in the corpus at once and a join on the raw string silently splits a city in
+# two (Project-Doc 6.3).
+bangalore: bengaluru
+bangalore urban: bengaluru urban
+bangalore rural: bengaluru rural
+gurgaon: gurugram
+mysore: mysuru
+mangalore: mangaluru
+belgaum: belagavi
+hubli: hubballi
+bellary: ballari
+gulbarga: kalaburagi
+bijapur: vijayapura
+tumkur: tumakuru
+shimoga: shivamogga
+calcutta: kolkata
+bombay: mumbai
+madras: chennai
+pondicherry: puducherry
+trivandrum: thiruvananthapuram
+baroda: vadodara
+poona: pune
+cochin: kochi
+calicut: kozhikode
+trichy: tiruchirappalli
+tanjore: thanjavur
+vizag: visakhapatnam
+allahabad: prayagraj
+faizabad: ayodhya
+orissa: odisha

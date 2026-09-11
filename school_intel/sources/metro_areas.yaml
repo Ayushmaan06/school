@@ -1,0 +1,95 @@
+# PIN prefix -> metro_area. A closed, configured vocabulary (docs/DATA-MODEL.md
+# item 5), NOT free text and NOT hardcoded logic.
+#
+# Matching is longest-prefix-wins, so a 4-digit entry beats a 3-digit one and a
+# 3-digit beats a 2-digit. That is what lets Delhi NCR span three states while
+# leaving the rest of Haryana and UP unmapped.
+#
+# A PIN with no entry gets NULL, which scores in the lowest geography band. That
+# is correct behaviour, not an error - most of India is not a metro.
+#
+# `Delhi NCR` spanning Delhi + Haryana + UP is the entire reason this field
+# exists (Project-Doc 6.2). Do not "fix" it by splitting it per state.
+
+Bengaluru:
+  - "560"   # Bengaluru Urban
+  - "561"   # Bengaluru Rural / Doddaballapur
+  - "562"   # Bengaluru Rural / Anekal, Nelamangala
+
+"Delhi NCR":
+  - "110"   # Delhi
+  - "1210"  # Gurugram (Haryana)
+  - "1220"  # Faridabad (Haryana)
+  - "1221"  # Faridabad / Ballabgarh
+  - "2013"  # Noida / Gautam Buddha Nagar (Uttar Pradesh)
+  - "2010"  # Ghaziabad (Uttar Pradesh)
+  - "2011"  # Ghaziabad
+
+"MMR (Mumbai)":
+  - "400"   # Mumbai / Navi Mumbai
+  - "401"   # Thane / Vasai-Virar / Palghar
+  - "410"   # Raigad / Panvel / Kalyan belt
+
+Pune:
+  - "411"
+  - "412"
+
+Hyderabad:
+  - "500"
+  - "501"   # Ranga Reddy
+  - "502"   # Medak / Sangareddy fringe
+
+Chennai:
+  - "600"
+  - "601"   # Tiruvallur / Kancheepuram fringe
+  - "602"
+
+Kolkata:
+  - "700"
+  - "711"   # Howrah
+
+Ahmedabad:
+  - "380"
+  - "382"   # Gandhinagar / fringe
+
+Surat:
+  - "394"
+  - "395"
+
+Jaipur:
+  - "302"
+
+Lucknow:
+  - "226"
+
+Chandigarh:
+  - "160"
+  - "140"   # Mohali (Punjab)
+  - "134"   # Panchkula (Haryana)
+
+Indore:
+  - "452"
+  - "453"
+
+Nagpur:
+  - "440"
+  - "441"
+
+Coimbatore:
+  - "641"
+
+Kochi:
+  - "682"
+  - "683"
+
+Mysuru:
+  - "570"
+  - "571"
+
+Mangaluru:
+  - "575"
+  - "574"
+
+Visakhapatnam:
+  - "530"
+  - "531"

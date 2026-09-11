@@ -1,0 +1,19 @@
+# Ordered longest-first at load time, so "sr sec" expands before "sr".
+# Config, never code: this list grows every time a new naming style turns up.
+dps: delhi public school
+kv: kendriya vidyalaya
+k v: kendriya vidyalaya
+jnv: jawahar navodaya vidyalaya
+st: saint
+sr: senior
+sec: secondary
+hr: higher
+intl: international
+"int'l": international
+eng: english
+mem: memorial
+meml: memorial
+pu: pre university
+jr: junior
+govt: government
+vid: vidyalaya

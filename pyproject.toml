@@ -1,0 +1,48 @@
+[project]
+name = "school-intel"
+version = "0.1.0"
+description = "Ranks Indian institutions as recruitment channels for Tensor School's B.Tech program"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.141.1",
+    "sqlalchemy>=2.0",
+    "alembic>=1.14",
+    "psycopg[binary]>=3.2",
+    "pydantic-settings>=2.7",
+    "httpx[http2]>=0.28",
+    "selectolax>=0.3.27",
+    "pdfplumber>=0.11",
+    "typer>=0.15",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.20",
+    "openpyxl>=3.1",
+    "rapidfuzz>=3.11",
+    "pyyaml>=6.0",
+    # ADR-016: OCR for scanned fee PDFs. PyPI-only, no system binary, no PyTorch,
+    # no API key - `uv sync` stays sufficient to run the whole pipeline.
+    "rapidocr-onnxruntime>=1.4",
+    "uvicorn>=0.52.4",
+]
+
+# ADR-013: the default pipeline runs with no model inference and no API key.
+# `anthropic` is an extra so `uv sync` without it still produces a working pipeline.
+[project.optional-dependencies]
+llm = ["anthropic>=0.45"]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "pytest-asyncio>=0.25", "ruff>=0.9", "respx>=0.22"]
+
+[project.scripts]
+school-intel = "school_intel.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["school_intel"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

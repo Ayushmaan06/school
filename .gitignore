@@ -1,0 +1,13 @@
+
+!.dual-graph/context-store.json
+# dual-graph runtime state (context-store.json is intentionally tracked)
+*.py[cod]
+.dual-graph/*
+.env
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+probe_results.json
+raw/
+.dual-graph/

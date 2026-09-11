@@ -1,0 +1,183 @@
+# ALL weights, bands and geography values live here. Hard rule 8: never hardcode
+# one of these numbers in Python. Changing a weight is a config edit plus a
+# model_version bump, never a code change - that is what makes rescoring cheap
+# and auditable.
+#
+# The tables below are docs/SCORING.md, transcribed. If the two disagree, the
+# doc is the specification and this file is the bug.
+
+model_version: fit_v1
+
+# --- Step 0: the hard gate ------------------------------------------------
+# Failing any of these means not scored and not shown. Eligibility, not penalty.
+hard_gate:
+  require_class_12: true
+  science_streams: [PCM, PCMB]
+  # Unknown streams pass provisionally with a streams_unknown flag, but only
+  # for the higher curriculum tiers where science is near-certain.
+  allow_unknown_streams_for_tiers: [IB_DP, CAIE_ALEVEL, CISCE_ISC]
+  active_statuses: [active]
+
+# --- Fit components -------------------------------------------------------
+# Renormalised over the components that HAVE data: an institution with unknown
+# fees is not a cheap institution (ADR-010).
+components:
+  affordability: 30
+  pcm_12_volume: 25
+  curriculum_tier: 15
+  geography: 15
+  accessibility: 10
+  group_leverage: 5
+
+# Below this many possible points, do not emit a Fit score at all. Scaling 10
+# points up to 100 is not a score, it is noise.
+min_possible_points: 40
+
+# --- Component 1: affordability ------------------------------------------
+# Calibrated against Tensor's Rs 6,00,000/year all-in fee. Deliberately NOT
+# monotonic-increasing: the most affluent cohort is not the most convertible
+# one, because overseas study becomes the default expectation (ADR-011).
+# `upto` is exclusive. The last band has no upper bound.
+affordability_bands:
+  - {upto: 50000, points: 0, reason: "cannot fund Rs 6L/yr - a non-lead, not a weak lead"}
+  - {upto: 100000, points: 6, reason: "possible with heavy scholarship; low probability"}
+  - {upto: 150000, points: 15, reason: "plausible with scholarship and stretch"}
+  - {upto: 300000, points: 30, reason: "peak - comfortably able to fund Rs 6L/yr"}
+  - {upto: 600000, points: 28, reason: "excellent; slightly more likely chasing tier-1 alternatives"}
+  - {upto: 1000000, points: 22, reason: "strong ability to pay; overseas study competes"}
+  - {upto: null, points: 16, reason: "Rs 24L reads as value vs overseas, but abroad is the default"}
+
+# --- Component 2: PCM-12 volume ------------------------------------------
+# Class-12 science headcount, NOT total enrollment. `from` is inclusive.
+pcm_12_bands:
+  - {from: 300, points: 25}
+  - {from: 200, points: 22}
+  - {from: 120, points: 18}
+  - {from: 60, points: 12}
+  - {from: 25, points: 6}
+  - {from: 0, points: 2}
+
+pcm_12_estimation:
+  # Recalibrate both ratios against the eval gold set once ~50 institutions have
+  # verified stream splits.
+  from_class_12_total: 0.45
+  from_total_enrollment: 0.06
+  # Applied to the COMPONENT's points, not to Fit overall, so an estimated 300
+  # cannot outrank a verified 200.
+  penalty_multiplier: 0.6
+
+# Estimating a student count when none is published. The proforma publishes
+# TEACHER counts far more often than student counts, and CBSE norms put a
+# section at roughly 30-35 pupils with about one teacher per section plus
+# subject staff. 25 is a deliberately conservative multiplier.
+#
+# Any value derived this way is stored with is_estimated set and rendered as
+# "~N (estimated)". It is an approximation with a stated basis, never a figure
+# presented as if the school published it.
+student_estimation:
+  students_per_teacher: 25
+  min_plausible_teachers: 3
+  max_plausible_teachers: 500
+  # Class-12 share of total enrollment, for schools spanning K-12.
+  class_12_share_of_total: 0.06
+
+# --- Component 3: curriculum tier ----------------------------------------
+# Maximum over the institution's boards. IB_PYP / IB_MYP / CAIE_IGCSE score 0
+# and usually fail the hard gate anyway, since they stop before class 11.
+curriculum_points:
+  IB_DP: 15
+  CAIE_ALEVEL: 15
+  CISCE_ISC: 12
+  CBSE: 10
+  STATE_DEFAULT: 5
+  IB_PYP: 0
+  IB_MYP: 0
+  CAIE_IGCSE: 0
+
+# --- Component 4: geography ----------------------------------------------
+# Anchored on Bengaluru. A BD-efficiency weighting, not a market boundary -
+# delivery is mostly online. `campaign` exists so alternative weightings run
+# without a code change or losing history.
+geography:
+  default:
+    districts:
+      "bengaluru urban": 15
+      "bengaluru rural": 15
+    metros:
+      Bengaluru: 15
+      Hyderabad: 11
+      Chennai: 11
+      Pune: 11
+      "MMR (Mumbai)": 11
+      "Delhi NCR": 9
+      Kolkata: 9
+      Ahmedabad: 9
+      Coimbatore: 8
+      Mysuru: 8
+      Kochi: 8
+      Visakhapatnam: 8
+      Mangaluru: 8
+    states:
+      karnataka: 12
+    south_india_tier2: 8
+    other_tier2: 5
+    fallback: 3
+
+# --- Component 5: accessibility ------------------------------------------
+# Additive, capped at the component max. An institution nobody can reach is
+# unactionable regardless of how good it looks.
+accessibility:
+  counsellor_or_coordinator: 4
+  principal_verified: 3
+  email: 2
+  phone: 1
+  # A principal whose verified_at is older than this scores 0 for that line and
+  # raises stale_leadership. Leadership churns annually (Project-Doc 6.8).
+  principal_stale_after_months: 12
+
+# --- Component 6: group leverage -----------------------------------------
+# Uses qualifying_campus_count, never raw campus_count.
+group_leverage_bands:
+  - {from: 20, points: 5}
+  - {from: 5, points: 3}
+  - {from: 2, points: 1}
+  - {from: 0, points: 0}
+# A brand match is not a decision-maker. Treating a franchise network as one
+# chain sends BD to the wrong contact and inflates the score (6.6).
+franchise_network_cap: 1
+
+# The affordability floor for qualifying_campus_count (M4-1b). Nothing from
+# score/ may be imported into resolve/, so this value is read there directly.
+qualifying_campus:
+  fee_floor_inr: 100000
+  fee_unknown_requires_tier: [CISCE_ISC, IB_DP, CAIE_ALEVEL]
+
+# --- Confidence -----------------------------------------------------------
+# Separate 0-100. NEVER added to Fit (ADR-010).
+confidence:
+  field_completeness_max: 60
+  source_authority_max: 20
+  freshness_max: 20
+  decision_critical_fields:
+    - fee_annual_inr
+    - pcm_12_count
+    - board
+    - streams
+    - principal_name
+    - email_or_phone
+    - pincode
+    - total_enrollment
+  authority_tier_points: {1: 20, 2: 16, 3: 11, 4: 4}
+  freshness_months: [{upto: 6, points: 20}, {upto: 12, points: 12}, {upto: 24, points: 6}, {upto: null, points: 0}]
+
+# --- OCR guard (ADR-016) --------------------------------------------------
+ocr:
+  # An OCR'd fee within this fraction of an affordability band edge goes to
+  # review_queue as ocr_fee_unverified. That is precisely where one misread
+  # digit changes the ranking.
+  band_boundary_margin: 0.10
+  # OCR-derived observations carry this confidence, so they lose to any
+  # text-layer or HTML fee in resolve/conflict.py.
+  observation_confidence: 0.55
+  min_plausible_fee_inr: 1000
+  max_plausible_fee_inr: 5000000

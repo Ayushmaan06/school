@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+<h1>{{ title }}</h1>
+<p class="sub">
+  {{ schools|length }} school{{ '' if schools|length == 1 else 's' }} shown,
+  best-informed first — a school you can actually phone ranks above one with a
+  higher score and no way in.
+</p>
+
+<div class="stats" style="align-items:center">
+  {% if scope_kind == 'state' %}
+    {% set c = contact|default('any') %}
+    {% set k = class12|default('any') %}
+    <div class="filters">
+      <span class="flabel">Contact</span>
+      {% for key, label in [('any','All'), ('verified','Verified'), ('weak','Weak'), ('reachable','Verified + weak'), ('none','No way in')] %}
+        <a class="pill {{ 'on' if c == key }}"
+           href="/state/{{ scope_value }}?contact={{ key }}&class12={{ k }}">{{ label }}</a>
+      {% endfor %}
+      <span class="flabel">Class 12</span>
+      {% for key, label in [('any','All'), ('yes','Has class 12'), ('unconfirmed','Not confirmed')] %}
+        <a class="pill {{ 'on' if k == key }}"
+           href="/state/{{ scope_value }}?contact={{ c }}&class12={{ key }}">{{ label }}</a>
+      {% endfor %}
+    </div>
+    <a class="stat" style="text-decoration:none" href="/export.csv?state={{ scope_value }}&contact={{ c }}&class12={{ k }}">
+      <b>Download CSV</b><span>opens in Excel</span>
+    </a>
+    <form class="inline" action="/enrich" method="post" style="margin-left:8px">
+      <input type="hidden" name="state" value="{{ scope_value }}">
+      <input type="number" name="count" value="250" min="1" max="5000" style="width:92px">
+      <button type="submit">Get more details</button>
+    </form>
+  {% elif scope_value %}
+    <a class="stat" style="text-decoration:none" href="/export.csv?{{ scope_kind }}={{ scope_value|urlencode }}">
+      <b>Download CSV</b><span>opens in Excel</span>
+    </a>
+  {% endif %}
+</div>
+
+{% if justdial %}
+<div class="note">
+  Looking for more schools in {{ title }} than we have?
+  <a href="{{ justdial }}" target="_blank" rel="noopener noreferrer">
+    See CBSE class XI–XII schools in {{ title }} on JustDial →</a>
+  <br><small>Opens their listings directly, so it is always current. We do not
+  copy their data.</small>
+</div>
+{% elif scope_kind == 'city' and scope_value %}
+<div class="note">
+  We have no schools recorded for “{{ scope_value }}”, and it is not a place name
+  we recognise — so we are not offering an outside link, because that link
+  silently redirects unknown cities to Mumbai and would show you the wrong
+  city's schools. Try a district name, or browse from the <a href="/">map</a>.
+</div>
+{% endif %}
+
+{% if schools %}
+<div class="wrap">
+<table>
+  <thead><tr>
+    <th>School</th><th>Principal</th><th>Phone</th><th>Email</th>
+    <th>Students</th><th>Fee / yr</th><th>District</th><th>More</th>
+  </tr></thead>
+  <tbody>
+  {% for s in schools %}
+    <tr>
+      <td>
+        <b>{{ s.canonical_name|title }}</b>
+        {% if not s.has_class_12 %}<span class="chip" title="No source has shown us a class 12 at this school. Most of these have simply never been enriched - it is not a confirmed absence.">class 12 not confirmed</span>{% endif %}
+        {% if s.contact_tier == 'weak' %}<span class="chip weak" title="Visited, but the site published no phone or email. Use the website - nothing here is a verified address.">weak contact</span>{% endif %}
+        {% if s.boards %}<br><small class="none">{{ s.boards }}</small>{% endif %}
+      </td>
+      <td>{% if s.principal_name %}{{ s.principal_name|title }}{% else %}<span class="none">—</span>{% endif %}
+          {% if s.counsellor_name %}<br><small>Counsellor: {{ s.counsellor_name|title }}</small>{% endif %}</td>
+      <td>{% if s.phone %}<a href="tel:{{ s.phone }}">{{ s.phone }}</a>{% else %}<span class="none">—</span>{% endif %}</td>
+      <td>{% if s.email %}<a href="mailto:{{ s.email }}">{{ s.email }}</a>
+          {% elif s.email_guessed %}
+            <a class="est" href="mailto:{{ s.email_guessed }}" title="A GUESS derived from this school's own domain, not an address it published. Field-checked at roughly 40% in Nagpur and 80% in Patna - so expect some to bounce or reach a stranger. Never bulk-send to these.">{{ s.email_guessed }}</a>
+            <br><small class="est">Unverified Source</small>
+          {% else %}<span class="none">—</span>{% endif %}</td>
+      <td>
+        {% if s.total_enrollment %}
+          {% if s.enrollment_is_estimated %}
+            <span class="est" title="Approximate: derived from the school's published teacher count, not a figure the school stated">~{{ "{:,}".format(s.total_enrollment) }}</span>
+            <br><small class="est">estimated</small>
+          {% else %}{{ "{:,}".format(s.total_enrollment) }}{% endif %}
+          {% if s.total_teachers %}<br><small class="none">{{ s.total_teachers }} teachers</small>{% endif %}
+        {% elif s.total_teachers %}
+          <span class="none">—</span><br><small class="none">{{ s.total_teachers }} teachers</small>
+        {% else %}<span class="none">—</span>{% endif %}
+      </td>
+      <td>{% if s.fee_annual_inr_mid %}Rs {{ "{:,}".format(s.fee_annual_inr_mid) }}
+          {% if s.fee_year %}<br><small class="none">{{ s.fee_year }}</small>{% endif %}
+          {% else %}<span class="none">—</span>{% endif %}</td>
+      <td>{{ (s.district or '')|title }}{% if s.pincode %}<br><small class="none">{{ s.pincode }}</small>{% endif %}</td>
+      <td>
+        {% if s.website %}<a href="{{ 'https://' + s.website if '://' not in s.website else s.website }}" target="_blank" rel="noopener">site</a>{% endif %}
+        {% if s.fit %}<br><small class="none">fit {{ s.fit }}</small>{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% elif scope_value %}
+<p class="sub">Nothing found. Try a district name, or browse from the <a href="/">map</a>.</p>
+{% endif %}
+{% endblock %}

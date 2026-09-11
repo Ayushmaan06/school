@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Queued{% endblock %}
+{% block body %}
+<h1>{% if already_queued %}Already queued{% else %}Queued{% endif %}</h1>
+{% if already_queued %}
+  <p class="sub">{{ state|title }} is already in the queue for {{ count }} schools,
+  so nothing new was added. It will be picked up by the worker.</p>
+{% else %}
+  <p class="sub">Queued {{ count }} schools in {{ state|title }} for enrichment.</p>
+{% endif %}
+
+<div class="note">
+  <b>This runs in the background.</b> The worker visits each school's website
+  politely, one at a time per domain, and writes what it finds straight to the
+  database. Nothing is fetched while you wait on this page — refresh the state
+  in a few minutes and the new phone numbers, emails, fees and student counts
+  will be there.
+  <br><br>
+  Enrichment jobs waiting: <b>{{ pending }}</b>.
+  The worker must be running: <code>make worker</code>.
+</div>
+
+<p><a href="/state/{{ state }}">← Back to {{ state|title }}</a></p>
+{% endblock %}

@@ -369,6 +369,8 @@ def coverage_totals(session: Session) -> dict:
                    count(*) FILTER (WHERE email IS NOT NULL) AS with_email,
                    count(*) FILTER (WHERE fee_annual_inr_mid IS NOT NULL) AS with_fee,
                    count(*) FILTER (WHERE total_enrollment IS NOT NULL) AS with_students,
+                   count(*) FILTER (WHERE total_enrollment IS NOT NULL
+                       OR student_count_guessed IS NOT NULL) AS with_students_or_guessed,
                    count(*) FILTER (WHERE {reachable}) AS contactable,
                    count(*) FILTER (WHERE {verified}) AS strongly_contactable,
                    count(DISTINCT state) AS states

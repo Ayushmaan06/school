@@ -29,8 +29,8 @@
     <b>{{ "{:,}".format(totals.with_fee) }}</b><span>fee known</span>
   </div>
   <div class="stat"
-    title="Schools with a student count - published, or estimated as teachers x 25 where only teacher count was published.">
-    <b>{{ "{:,}".format(totals.with_students) }}</b><span>student count</span>
+    title="{{ '{:,}'.format(totals.with_students) }} published or teacher-derived, plus {{ '{:,}'.format(totals.with_students_or_guessed - totals.with_students) }} filled with an unverified guess (random draw between our DB-wide mean and median). Never trust the guessed ones for anything but a rough sense of scale.">
+    <b>{{ "{:,}".format(totals.with_students_or_guessed) }}</b><span>student count</span>
   </div>
   <div class="stat"
     title="Phone or email in hand, OR a website we have actually visited even if nothing was extracted from it yet - some way to reach them.">

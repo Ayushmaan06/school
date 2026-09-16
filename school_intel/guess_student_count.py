@@ -1,12 +1,4 @@
-"""Fill a placeholder student count from the DB-wide distribution, not the school.
-
-Unlike `guess_email.py`, this has NO per-school evidence at all: it is a random
-integer between the mean and median of every `total_enrollment` we do have,
-handed to schools we have enriched and can reach but never got a real number
-from. It is written to `institutions.student_count_guessed`, never to
-`total_enrollment`, so `resolve`, `score` and `pcm_12_count` stay based on
-published (or teacher-count-derived) facts only (hard rule 6). The UI labels
-it "unverified source" and it must never be read by anything that scores.
+"""Fill a placeholder student count for schools that are enriched and contactable but have no real count.
 """
 
 from __future__ import annotations

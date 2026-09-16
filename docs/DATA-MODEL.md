@@ -1,6 +1,6 @@
 # Data Model
 
-PostgreSQL 16. Three layers (ADR-009). The DDL below is the specification —
+PostgreSQL 16. Three layers (ADR-009). The DDL below is the specification , 
 implement it in Alembic migrations, do not deviate without an ADR.
 
 **The one rule:** layers 1 and 2 are append-only and are the truth. Layer 3 is a
@@ -9,7 +9,7 @@ derived cache that `make rebuild` can drop and regenerate from layers 1 and 2 pl
 
 ---
 
-## Layer 0 — Source registry
+## Layer 0 ,  Source registry
 
 Drives fetch cadence, conflict resolution, and compliance. Seeded from
 `docs/SOURCES.md`; not user-editable at runtime.
@@ -33,7 +33,7 @@ overrides to that default live in `docs/SOURCES.md` and are implemented in
 
 ---
 
-## Layer 1 — Raw. Immutable, append-only.
+## Layer 1 ,  Raw. Immutable, append-only.
 
 ```sql
 CREATE TABLE fetches (
@@ -68,11 +68,11 @@ Content addressing gives free dedup: re-fetching an unchanged page writes a
 "has this page changed?" a hash comparison.
 
 **Never delete from these tables.** Retention pruning, if ever needed, is a
-separate reviewed decision — see `docs/COMPLIANCE.md`.
+separate reviewed decision ,  see `docs/COMPLIANCE.md`.
 
 ---
 
-## Layer 2 — Observations. Append-only claims.
+## Layer 2 ,  Observations. Append-only claims.
 
 The most important table in the system. One row = one source asserting one field
 value about one entity at one point in time.
@@ -146,7 +146,7 @@ group_name  group_campus_count
 
 ---
 
-## Layer 3 — Canonical. Derived, disposable.
+## Layer 3 ,  Canonical. Derived, disposable.
 
 ```sql
 CREATE TABLE institutions (
@@ -237,7 +237,7 @@ CREATE INDEX ON institutions (class_12_total    DESC NULLS LAST, id);
 CREATE INDEX ON institutions (total_enrollment  DESC NULLS LAST, id);
 ```
 
-**No score column.** Scores are versioned rows elsewhere — this was a
+**No score column.** Scores are versioned rows elsewhere ,  this was a
 `Project-Doc.md` 4 vs 6.14 contradiction (ADR-010).
 
 ```sql
@@ -305,7 +305,7 @@ CREATE INDEX ON roles (institution_id, title_normalized);
 ```
 
 `career_counsellor` and `academic_coordinator` are as important as `principal`
-here — they are usually the actual gatekeeper for a campus session.
+here ,  they are usually the actual gatekeeper for a campus session.
 
 ```sql
 CREATE TABLE scores (
@@ -345,7 +345,7 @@ CREATE UNIQUE INDEX ON signals (institution_id, signal_type, event_date)
   WHERE institution_id IS NOT NULL;
 ```
 
-No `severity`, no `confidence`, no human review gate — because every v1 signal is
+No `severity`, no `confidence`, no human review gate ,  because every v1 signal is
 a deterministic diff of two authoritative snapshots (ADR-002). If the news
 pipeline is ever revived, it gets its own table rather than polluting this one.
 
@@ -360,7 +360,7 @@ CREATE TABLE registry_snapshots (
 ```
 
 Stage 8 diffs the two most recent snapshots for a source. **Guard:** if
-`row_count` is less than 50% of the previous snapshot, abort and alert — do not
+`row_count` is less than 50% of the previous snapshot, abort and alert ,  do not
 emit thousands of spurious `disaffiliation` signals. See ARCHITECTURE.md,
 "Source structure drift."
 
@@ -507,7 +507,7 @@ The resolver assigns `institution_id` in two deterministic passes:
    `institutions` (`cbse:` -> `cbse_affiliation_no`, `udise:` -> `udise_code`,
    and so on). Upsert on that column. Deterministic by construction.
 2. **Merge pass.** Replay `merge_decisions` in `(entity_key_a, entity_key_b)`
-   sort order, unioning the referenced institutions. **Sort order matters** — it
+   sort order, unioning the referenced institutions. **Sort order matters** ,  it
    is what makes repeated rebuilds produce identical results, so never iterate
    these rows in insertion order or in whatever order Postgres returns them.
 
@@ -515,7 +515,7 @@ The resolver assigns `institution_id` in two deterministic passes:
 `entity_key` itself, stored as-is; a `group_directory` campus that later turns out
 to be a known CBSE school is linked by a `merge_decisions` row like any other pair.
 
-### 2. `qualifying_campus_count` is computed BEFORE scoring — there is a cycle here
+### 2. `qualifying_campus_count` is computed BEFORE scoring ,  there is a cycle here
 
 Scoring's group-leverage component reads `groups.qualifying_campus_count`, and a
 naive reading of "qualifying" as "scores well" makes scoring depend on itself.
@@ -545,7 +545,7 @@ to_tsvector('simple',
   coalesce(legal_entity_name,''))
 ```
 
-Use `'simple'`, not `'english'` — stemming English words is wrong for Indian
+Use `'simple'`, not `'english'` ,  stemming English words is wrong for Indian
 institution names (`Vidyalaya`, `Bhavan`, `Vidya Mandir`) and actively harms
 recall. A database trigger is deliberately avoided so that a rebuild stays a pure
 function of its inputs.
@@ -575,7 +575,7 @@ Ahmedabad · Coimbatore · Kochi · Mysuru · Mangaluru · Visakhapatnam · Jaip
 Lucknow · Chandigarh · Indore · Nagpur · Surat
 ```
 
-`Delhi NCR` deliberately spans Delhi, Haryana and UP PINs — that is the whole
+`Delhi NCR` deliberately spans Delhi, Haryana and UP PINs ,  that is the whole
 point of having the field (`Project-Doc.md` 6.2). A PIN with no metro mapping
 gets `NULL`, which scores in the lowest geography band, and that is correct
 behaviour rather than an error.
@@ -621,13 +621,13 @@ workarounds:
   corpus, so its scores and signals should go with it.
 
 The four required properties are unchanged, and `tests/integration/test_rebuild.py`
-asserts property (d) — non-destructiveness — by row-counting the append-only
+asserts property (d) ,  non-destructiveness ,  by row-counting the append-only
 tables before and after. That test is what would have caught this immediately.
 
 Required properties, and there should be a test for each:
 
 1. **Deterministic.** Same inputs produce the same canonical output. No
-   `random`, no unseeded ordering, no `now()` inside resolution logic — pass a
+   `random`, no unseeded ordering, no `now()` inside resolution logic ,  pass a
    run timestamp in.
 2. **Override-preserving.** Every `overrides` row is reflected in the rebuilt
    canonical layer.

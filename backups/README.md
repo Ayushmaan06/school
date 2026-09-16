@@ -1,7 +1,7 @@
 # Database snapshots
 
 `school_intel_YYYY-MM-DD.dump` is a `pg_dump` custom-format snapshot of the
-whole database — schools, observations, scores, resolved contacts. Restore it
+whole database ,  schools, observations, scores, resolved contacts. Restore it
 and the tool works immediately, with no importing and no fetching.
 
 ## What is in the one dated 2026-09-06
@@ -21,7 +21,7 @@ just by the dump exiting 0.
 **No student-level data.** URLs that look like results, merit lists or
 admission lists are blocked before the request is made, and 9 documents that
 slipped through were detected and deleted during the last run. That is hard
-rule 1 and the DPDP boundary — see `docs/COMPLIANCE.md`. It does contain
+rule 1 and the DPDP boundary ,  see `docs/COMPLIANCE.md`. It does contain
 principal names, which CBSE publishes in its public registry.
 
 ## Restoring
@@ -46,7 +46,7 @@ uv run python -m school_intel.cli worker    # required for "Get more details"
 
 ## What is NOT in it
 
-`raw/` — the fetched HTML and PDFs, about 3,400 files. The dump references them
+`raw/` ,  the fetched HTML and PDFs, about 3,400 files. The dump references them
 by `content_hash`, so a restored database has every extracted value but cannot
 re-run `extract --reextract` without them. That only matters if you intend to
 improve a parser and re-apply it to already-fetched pages.

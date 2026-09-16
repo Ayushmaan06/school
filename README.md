@@ -5,12 +5,12 @@ recruit **class 11-12 PCM students** into Tensor School of CS & AI's B.Tech
 program, and tells the BD team who to contact at each one.
 
 The output that matters: *"here are the 40 institutions to approach next, ranked,
-with a named contact and the reason for each"* — exported to a spreadsheet in
+with a named contact and the reason for each"* ,  exported to a spreadsheet in
 under a minute, instead of hours of manual Googling.
 
 ## What it does
 
-1. **Imports** authoritative registries — CBSE SARAS, CISCE, IB, Cambridge,
+1. **Imports** authoritative registries ,  CBSE SARAS, CISCE, IB, Cambridge,
    UDISE+, and coaching-group campus directories. No general crawling.
 2. **Enriches** each institution from its own statutory CBSE Mandatory Public
    Disclosure page, which is where fee structure, class-wise student strength, and
@@ -25,7 +25,7 @@ under a minute, instead of hours of manual Googling.
 
 ## What it deliberately does not do
 
-- **No student data.** Ever. Institution-level only — see `docs/COMPLIANCE.md`.
+- **No student data.** Ever. Institution-level only ,  see `docs/COMPLIANCE.md`.
   This is a legal boundary under India's DPDP Act 2023, enforced as a fetch-time
   denylist rather than a downstream filter.
 - **No general web crawling.** Registry imports plus one known page per

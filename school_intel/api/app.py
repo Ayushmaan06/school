@@ -211,6 +211,9 @@ def export_csv(
         ("fee_annual_inr_mid", "Fee (annual, Rs)"),
         ("fee_year", "Fee year"),
         ("total_enrollment", "Students"),
+        # Header says GUESSED - a random DB-wide mean/median draw, not this
+        # school's own data. Never mistake it for total_enrollment.
+        ("student_count_guessed", "Students (GUESSED - unverified)"),
         ("total_teachers", "Teachers"),
         ("class_12_total", "Class 12"),
         ("year_founded", "Founded"),

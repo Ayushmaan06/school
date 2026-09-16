@@ -19,6 +19,8 @@ from datetime import UTC, datetime
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
+from school_intel.extract.mpd.run import BOARD_ID_COLUMNS
+
 # Registrable-domain suffixes that take two labels. Without these,
 # `bikanerboysschool.ac.in` would yield "ac" instead of the school name.
 MULTI_SUFFIXES = {
@@ -121,9 +123,19 @@ def guess_for(website: str | None) -> str | None:
     return f"{token}@gmail.com" if token else None
 
 
-def backfill(session: Session, *, only_weak: bool = True) -> dict[str, int]:
-    """Fill `email_guessed` for enriched schools with a site but no contact."""
+def backfill(
+    session: Session, *, only_weak: bool = True, board: str | None = None
+) -> dict[str, int]:
+    """Fill `email_guessed` for enriched schools with a site but no contact.
+
+    `board` narrows to one registry ('cbse' or 'cisce'). The vendor-domain guard
+    below counts how many schools share a domain, so narrowing also narrows what
+    that guard can see - which is the right trade here, because an ERP vendor
+    serving four CISCE schools is exactly as much a vendor within the subset.
+    """
     where = ["i.status = 'active'", "i.website IS NOT NULL"]
+    if board:
+        where.append(f"i.{BOARD_ID_COLUMNS[board]} IS NOT NULL")
     if only_weak:
         # The operator's scope: enriched non-contactables only. A school we
         # never visited might still publish a real address, and a guess would

@@ -43,7 +43,7 @@ REFRESH_DAYS = 180
 # version, so bumping one extractor's `_v1` to `_v2` invalidates its markers on
 # its own - there is no second place to remember to update, and no way to ship a
 # parser change that silently never gets applied.
-PIPELINE_VERSION = f"{tables.EXTRACTOR}|{ocr.EXTRACTOR}|{patterns.EXTRACTOR}"
+PIPELINE_VERSION = "|".join((tables.EXTRACTOR, ocr.EXTRACTOR, patterns.EXTRACTOR))
 
 # Commit the markers periodically so a full pass is resumable. A national
 # re-extract is hours of OCR; without this, interrupting it discarded all of it.
@@ -108,12 +108,20 @@ class CoverageReport:
         }
 
 
+# Board -> the institutions column holding that registry's stable ID. Lets a
+# campaign enrich one registry at a time: the CISCE schools are a fresh 840 with
+# no contacts at all, while the remaining CBSE ones are a long tail already
+# half-worked, and mixing them makes the run's yield impossible to read.
+BOARD_ID_COLUMNS = {"cbse": "cbse_affiliation_no", "cisce": "cisce_code"}
+
+
 def targets(
     session: Session,
     limit: int | None,
     states: list[str] | None,
     per_state: int | None = None,
     redo_after_days: int | None = None,
+    board: str | None = None,
 ) -> list[tuple]:
     """Institutions worth enriching: hard gate passed, has a website.
 
@@ -130,10 +138,19 @@ def targets(
     if states:
         clauses.append("upper(state) = ANY(:states)")
         params["states"] = [s.upper() for s in states]
-    # cbse_affiliation_no is selected because it forms the entity_key. Without
-    # it these observations would carry a prefix the resolver has no stable-ID
-    # column for, and every MPD fee would be silently orphaned.
-    clauses.append("cbse_affiliation_no IS NOT NULL")
+    # A stable ID is required because it forms the entity_key. Without one these
+    # observations would carry a prefix the resolver has no stable-ID column
+    # for, and every MPD fee would be silently orphaned.
+    #
+    # [M3-1] This used to read `cbse_affiliation_no IS NOT NULL`, which was
+    # indistinguishable from "has a stable ID" while CBSE was the only registry.
+    # It silently excluded all 1,928 CISCE schools from enrichment - and
+    # enrichment is the ONLY route to a phone number or an email address, so
+    # importing them bought a directory nobody could ring.
+    if board:
+        clauses.append(f"{BOARD_ID_COLUMNS[board]} IS NOT NULL")
+    else:
+        clauses.append("(cbse_affiliation_no IS NOT NULL OR cisce_code IS NOT NULL)")
     # RESUMABILITY. A school visited within the refresh window is skipped, so
     # re-running after an interruption continues where it stopped instead of
     # re-fetching an evening's work and hitting the same websites twice.
@@ -150,8 +167,8 @@ def targets(
         # whichever state has the lowest ids - Karnataka would consume a
         # national run entirely and the map would still show one state.
         sql = (
-            "SELECT id, canonical_name, website, cbse_affiliation_no FROM ("
-            "  SELECT id, canonical_name, website, cbse_affiliation_no,"
+            "SELECT id, canonical_name, website, entity_key FROM ("
+            "  SELECT id, canonical_name, website, coalesce('cbse:' || cbse_affiliation_no, 'cisce:' || cisce_code) AS entity_key,"
             "         row_number() OVER (PARTITION BY state ORDER BY id) AS rn"
             "    FROM institutions"
             f"   WHERE {where}"
@@ -160,7 +177,7 @@ def targets(
         params["per_state"] = per_state
     else:
         sql = (
-            "SELECT id, canonical_name, website, cbse_affiliation_no FROM institutions"
+            "SELECT id, canonical_name, website, coalesce('cbse:' || cbse_affiliation_no, 'cisce:' || cisce_code) AS entity_key FROM institutions"
             f" WHERE {where} ORDER BY id"
         )
     if limit:
@@ -292,13 +309,14 @@ async def discover_and_extract(
     observed_at: datetime | None = None,
     per_state: int | None = None,
     redo_after_days: int | None = None,
+    board: str | None = None,
 ) -> CoverageReport:
     report = CoverageReport()
-    rows = targets(session, limit, states, per_state, redo_after_days)
+    rows = targets(session, limit, states, per_state, redo_after_days, board)
     report.considered = len(rows)
 
     log.info("enriching %d schools", len(rows))
-    for index, (institution_id, name, website, affiliation_no) in enumerate(rows, 1):
+    for index, (institution_id, name, website, entity_key) in enumerate(rows, 1):
         # A full run is tens of minutes. Committing periodically keeps it out of
         # one enormous transaction, so an interruption keeps the work done so far
         # rather than discarding all of it.
@@ -321,7 +339,6 @@ async def discover_and_extract(
             continue
 
         report.outcomes[found.outcome] += 1
-        entity_key = f"cbse:{affiliation_no}"
         # Stamped whatever the outcome. A school whose website is dead is DONE -
         # re-trying it every run would spend the whole budget on the same
         # unreachable sites.
@@ -471,17 +488,20 @@ def reextract(
     )
     rows = session.execute(
         text(
-            "SELECT content_hash, url, id, cbse_affiliation_no FROM ("
+            "SELECT content_hash, url, id, entity_key FROM ("
             "  SELECT pairs.*, count(*) OVER (PARTITION BY content_hash) AS matches"
             "    FROM ("
             "      SELECT DISTINCT ON (f.content_hash, i.id)"
-            "             f.content_hash, f.url, i.id, i.cbse_affiliation_no"
+            "             f.content_hash, f.url, i.id,"
+            "             coalesce('cbse:' || i.cbse_affiliation_no,"
+            "                      'cisce:' || i.cisce_code) AS entity_key"
             "        FROM fetches f"
             "        JOIN institutions i"
             "          ON i.website IS NOT NULL"
             "         AND f.url ILIKE '%' || i.website || '%'"
             "       WHERE f.source_id = :src AND f.content_hash IS NOT NULL"
-            "         AND i.cbse_affiliation_no IS NOT NULL"
+            "         AND (i.cbse_affiliation_no IS NOT NULL"
+            "              OR i.cisce_code IS NOT NULL)"
             "       ORDER BY f.content_hash, i.id, f.id"
             "    ) pairs"
             ") counted WHERE matches = 1" + marker_filter + " ORDER BY content_hash"
@@ -494,9 +514,7 @@ def reextract(
     # nearly an hour with nothing on stdout. Log like enrich does - a silent
     # stage is indistinguishable from a hung one.
     log.info("re-extracting %d stored documents", len(rows))
-    for position, (content_hash, url, institution_id, affiliation_no) in enumerate(
-        rows, 1
-    ):
+    for position, (content_hash, url, institution_id, entity_key) in enumerate(rows, 1):
         if position % REEXTRACT_COMMIT_EVERY == 0:
             session.commit()
             log.info(
@@ -542,7 +560,7 @@ def reextract(
         write_observations(
             session,
             claims=claims,
-            entity_key=f"cbse:{affiliation_no}",
+            entity_key=entity_key,
             source_id=SOURCE_ID,
             extractor=extractor,
             observed_at=observed_at or datetime.now().astimezone(),

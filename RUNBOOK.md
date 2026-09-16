@@ -8,8 +8,8 @@ handover, not for whoever wrote it.
 ## What this tool is
 
 A searchable directory of CBSE schools in India for the Tensor School BD team.
-For each school it holds what a salesperson needs to make contact — name,
-principal, phone, email, website, address — plus context where it is published:
+For each school it holds what a salesperson needs to make contact ,  name,
+principal, phone, email, website, address ,  plus context where it is published:
 fee, student count, teacher count, board, trust.
 
 **It is a directory, not a CRM and not a student database.** It never stores
@@ -75,7 +75,7 @@ uv run python -m school_intel.cli import cbse_saras
 
 All 38 states, about 38 requests, a few minutes. Gets **name, principal,
 address, website, district and class-12 status for every CBSE school in India**
-— roughly 33,000 schools. This is the cheap stage and it is where most of the
+,  roughly 33,000 schools. This is the cheap stage and it is where most of the
 value comes from.
 
 One state only, for testing:
@@ -104,11 +104,11 @@ the lowest ids and the map still shows one state.
 **Watch the log, not the database.** Progress is logged every 5 schools
 (`45/6287 processed | fees 3 | contacts 21 | outcomes {...}`). Rows are written
 in batches, so querying the database from another terminal can show no change
-for a while even though the run is working — that is normal and not a hang.
+for a while even though the run is working ,  that is normal and not a hang.
 
 Budget roughly **3–6 web requests per school**. 250 per state across 38 states
 is about 30,000 requests and **roughly 7 hours** at ~15 schools a minute. Most
-of that time is school websites being slow or dead, not our own rate limiting —
+of that time is school websites being slow or dead, not our own rate limiting , 
 we already fetch different schools back to back and only serialise per domain.
 
 #### Run it on its own
@@ -116,7 +116,7 @@ we already fetch different schools back to back and only serialise per domain.
 **Give the enrichment the machine to itself.** It holds an OCR engine's models
 in memory and keeps many sockets open, and a national pass runs for hours. Run
 alongside other heavy work it can be killed by the operating system for memory
-— which is not a clean stop, though `mark-enriched` still recovers the progress.
+,  which is not a clean stop, though `mark-enriched` still recovers the progress.
 
 If the machine is also being used for other things, run a smaller pass
 (`--per-state 100`) more often rather than one long one.
@@ -155,15 +155,15 @@ uv run python -m school_intel.cli score
 
 `extract --reextract` makes **zero web requests**. It re-reads pages already
 saved on disk. If a parser is improved, this is how you apply the improvement to
-data you already have — you do not re-crawl.
+data you already have ,  you do not re-crawl.
 
 **Run `resolve` and `score` after any enrichment run, in that order.** They are
 minutes on the full corpus and nothing shows in the UI until they have run.
 
 **`extract --reextract` is a parser-change operation, not a per-run one.** The
 enrich stage already extracts what it fetches, so a normal pass does not need
-it. It is incremental — a document already read by the current version of the
-extractors is skipped — so running it anyway is cheap, but the reason to run it
+it. It is incremental ,  a document already read by the current version of the
+extractors is skipped ,  so running it anyway is cheap, but the reason to run it
 is that a parser changed.
 
 Bumping an extractor's version string (`EXTRACTOR = "regex:mpd_patterns_v1"` ->
@@ -207,7 +207,7 @@ http://127.0.0.1:8000/export.csv?state=karnataka
 http://127.0.0.1:8000/export.csv?city=mysuru
 ```
 
-Opens directly in Excel. **Unknown values are blank cells, never `0`** — a zero
+Opens directly in Excel. **Unknown values are blank cells, never `0`** ,  a zero
 gets sorted, summed and averaged by whoever opens the sheet, which silently
 turns "we don't know" into "this school has no students".
 
@@ -217,7 +217,7 @@ turns "we don't know" into "this school has no students".
 
 **"The CBSE site stopped returning data."**
 It serves a CAPTCHA after sustained traffic. The tool detects this, stops
-requesting that domain, and records why — it does not store the CAPTCHA page as
+requesting that domain, and records why ,  it does not store the CAPTCHA page as
 if it were school data. Wait a few hours and re-run; the rate limit is already
 set low (`rate_limit_rps: 0.1` for `cbse_saras` in
 `school_intel/sources/seed.yaml`).
@@ -232,13 +232,13 @@ That state has been imported but not enriched. The map's **Enriched** column
 shows this. Use "Get more details", or run `enrich --state <NAME>`.
 
 **"The enrichment run just disappeared."**
-Usually the operating system killed it for memory — see "Run it on its own".
+Usually the operating system killed it for memory ,  see "Run it on its own".
 Nothing is lost: run `mark-enriched`, then re-run the same enrich command and it
 continues from where it stopped.
 
 **"City search found nothing and offered no outside link."**
 Deliberate. The JustDial link is only offered for places we hold schools for,
-because their URL silently redirects unknown cities to Mumbai — offering it
+because their URL silently redirects unknown cities to Mumbai ,  offering it
 blindly would show the wrong city's schools.
 
 ---
@@ -287,5 +287,5 @@ curl -s http://127.0.0.1:8000/api/states | head
 All of these are configuration. **None of them requires a code change**, which
 is deliberate: the lists grow every time a new website layout turns up.
 
-Deeper background is in `docs/` — start with `AGENTS.md`, then
+Deeper background is in `docs/` ,  start with `AGENTS.md`, then
 `docs/DECISIONS.md` for why the architecture is the way it is.

@@ -6,19 +6,19 @@ blended. Flags are never score points.
 All weights, bands, and geography tables in this document live in
 `school_intel/score/scoring.yaml`. **Do not hardcode a single number from this
 document into Python.** Changing a weight must be a config edit and a version
-bump, never a code change — that is what makes rescoring cheap and auditable.
+bump, never a code change ,  that is what makes rescoring cheap and auditable.
 
 ---
 
-## Step 0 — The hard gate
+## Step 0 ,  The hard gate
 
 Before scoring, an institution must pass **all** of these. Failing any one means
 it is not scored and not shown. These are not penalties; they are eligibility.
 
 | Gate | Rule | Why |
 |---|---|---|
-| Has class 12 | `has_class_12 = true` | No class 12, no candidates. The single biggest filter — roughly a third of the CBSE list fails it |
-| Science stream | `'PCM' = ANY(streams) OR 'PCMB' = ANY(streams)` — or `streams` unknown and the institution is Tier A/B | B.Tech candidates come from PCM. Unknown streams pass provisionally with a `streams_unknown` flag |
+| Has class 12 | `has_class_12 = true` | No class 12, no candidates. The single biggest filter ,  roughly a third of the CBSE list fails it |
+| Science stream | `'PCM' = ANY(streams) OR 'PCMB' = ANY(streams)` ,  or `streams` unknown and the institution is Tier A/B | B.Tech candidates come from PCM. Unknown streams pass provisionally with a `streams_unknown` flag |
 | Active | `status = 'active'` | Closed or disaffiliated institutions are excluded |
 | Not blocked | no `overrides` row setting `excluded = true` | Human veto, e.g. already a competitor's partner |
 
@@ -42,7 +42,7 @@ data.**
 | Group leverage | 5 | `groups.qualifying_campus_count` |
 | **Total** | **100** | |
 
-### Renormalisation — this is the part that matters
+### Renormalisation ,  this is the part that matters
 
 `Project-Doc.md` 6.14 is right and its own section 7 contradicted it: a missing
 value must reduce **confidence**, not silently zero a sub-score. An institution
@@ -55,7 +55,7 @@ fit = 100 * earned / possible
 ```
 
 So an institution with everything except fee data is scored out of 70 and scaled
-up — it competes on what we know, and its lower Confidence tells the BD user how
+up ,  it competes on what we know, and its lower Confidence tells the BD user how
 much to trust the number.
 
 **Guard:** if `possible < 40`, do not emit a Fit score. Set
@@ -63,10 +63,10 @@ much to trust the number.
 institution into a separate "needs enrichment" bucket. Scaling 10 points up to 100
 is not a score, it is noise.
 
-### Component 1 — Affordability (30 points)
+### Component 1 ,  Affordability (30 points)
 
 The largest component, because it is the hardest qualifier (ADR-011). Input is
-`institutions.fee_annual_inr_mid` — a generated column, so scoring and the
+`institutions.fee_annual_inr_mid` ,  a generated column, so scoring and the
 fee-sorted list can never disagree about what "the fee" is. Do not recompute a
 midpoint in Python.
 
@@ -74,7 +74,7 @@ Calibrated against Tensor's Rs 6,00,000/year all-in fee.
 
 | Annual school fee (Rs) | Points | Reasoning |
 |---|---|---|
-| < 50,000 | 0 | A family paying Rs 50k/yr in school fees cannot fund Rs 6L/yr. Not a weak lead — a non-lead |
+| < 50,000 | 0 | A family paying Rs 50k/yr in school fees cannot fund Rs 6L/yr. Not a weak lead ,  a non-lead |
 | 50,000 - 1,00,000 | 6 | Possible with heavy T-SAT scholarship; low probability |
 | 1,00,000 - 1,50,000 | 15 | Plausible with scholarship and stretch |
 | **1,50,000 - 3,00,000** | **30** | **Peak.** Comfortably able to fund Rs 6L/yr; a private B.Tech is the expected path |
@@ -87,9 +87,9 @@ The curve collapses at the bottom and decays gently at the top. It is
 deliberately **not** monotonic-increasing: the most affluent cohort is not the
 most convertible cohort.
 
-### Component 2 — PCM-12 volume (25 points)
+### Component 2 ,  PCM-12 volume (25 points)
 
-Class-12 Science headcount. **Not** total enrollment — a 5,000-student K-12
+Class-12 Science headcount. **Not** total enrollment ,  a 5,000-student K-12
 school with 60 PCM students is worth less than an 800-student school with 200.
 
 | PCM class-12 students | Points |
@@ -115,7 +115,7 @@ Any estimate sets `institutions.pcm_12_is_estimated = true`, adds the
 ratios are config values in `scoring.yaml` and should be recalibrated against the
 eval gold set once ~50 institutions have verified stream splits.
 
-### Component 3 — Curriculum tier (15 points)
+### Component 3 ,  Curriculum tier (15 points)
 
 Maximum over the institution's boards. Proxies both affluence and the
 "considering alternatives to a conventional Indian degree" mindset.
@@ -128,17 +128,17 @@ Maximum over the institution's boards. Proxies both affluence and the
 | `CBSE` | 10 |
 | `STATE_*` | 5 |
 
-`IB_PYP`, `IB_MYP`, and `CAIE_IGCSE` alone score 0 for this component — and
+`IB_PYP`, `IB_MYP`, and `CAIE_IGCSE` alone score 0 for this component ,  and
 usually fail the hard gate anyway, since they stop before class 11.
 
-### Component 4 — Geography (15 points)
+### Component 4 ,  Geography (15 points)
 
 Anchored on Bengaluru. `[STAKEHOLDER]` delivery is mostly online with some
 physical sessions, so geography is a BD-efficiency weighting, **not** a market
 boundary.
 
 The four-region North/West/South/East split from `Project-Doc.md` 6.1 is
-**dropped** — it is useless for this ICP, where the real gradient is distance and
+**dropped** ,  it is useless for this ICP, where the real gradient is distance and
 travel corridor from a single Bengaluru campus.
 
 Default campaign (`campaign='default'`):
@@ -154,15 +154,15 @@ Default campaign (`campaign='default'`):
 | Everything else | 3 |
 
 This is a **table in `scoring.yaml`**, and `campaign` exists so alternative
-weightings can be run without a code change or losing history — e.g. a
+weightings can be run without a code change or losing history ,  e.g. a
 `campaign='north_push'` profile that re-weights Delhi NCR to 15. Multiple
 campaigns coexist in the `scores` table.
 
-`metro_area` is the join key here, not `city` — retaining `Project-Doc.md` 6.2's
+`metro_area` is the join key here, not `city` ,  retaining `Project-Doc.md` 6.2's
 correct point that NCR spans three states and 6.3's point that city is never a
 safe join key alone.
 
-### Component 5 — Accessibility (10 points)
+### Component 5 ,  Accessibility (10 points)
 
 An institution nobody can reach is unactionable regardless of how good it looks.
 
@@ -174,14 +174,14 @@ An institution nobody can reach is unactionable regardless of how good it looks.
 | `phone` present | 1 |
 
 Additive, capped at 10. A principal whose `verified_at` is older than 12 months
-scores 0 for that line and raises the `stale_leadership` flag — retaining
+scores 0 for that line and raises the `stale_leadership` flag ,  retaining
 `Project-Doc.md` 6.8, which correctly identified annual leadership churn as the
 field most likely to be scraped once and silently go stale.
 
-### Component 6 — Group leverage (5 points)
+### Component 6 ,  Group leverage (5 points)
 
-Uses `groups.qualifying_campus_count` — campuses that pass the hard gate **and**
-the affordability floor — never raw `campus_count`.
+Uses `groups.qualifying_campus_count` ,  campuses that pass the hard gate **and**
+the affordability floor ,  never raw `campus_count`.
 
 | Qualifying campuses in group | Points |
 |---|---|
@@ -264,7 +264,7 @@ carrying the raw value, points earned, max possible, and a human-readable reason
 }
 ```
 
-The UI must render this breakdown, not just the number — `Project-Doc.md` 6.14 was
+The UI must render this breakdown, not just the number ,  `Project-Doc.md` 6.14 was
 right that an unexplained 91/100 stops being trusted the first time it disagrees
 with a BD person's local knowledge. The same applies to score movement: an
 overnight 60 -> 90 jump is explained by diffing two `components` blobs, which is
@@ -289,7 +289,7 @@ Hard rules:
 
 - The LLM emits a `FilterSpec` object. It **never** emits SQL, never sees the
   schema beyond the whitelist, and never influences ranking or ordering.
-- Any field, operator, or enum value outside the whitelist is rejected — return a
+- Any field, operator, or enum value outside the whitelist is rejected ,  return a
   clarifying question to the user rather than guessing.
 - The rendered `FilterSpec` is shown to the user as editable filter chips, so an
   NL query and the equivalent manual filter selection are provably the same query

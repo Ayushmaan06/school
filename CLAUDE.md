@@ -158,14 +158,14 @@ speculatively.
 ## Current status
 
 Greenfield. Architecture settled and documented; **no implementation yet.**
-Start at `docs/IMPLEMENTATION-PLAN.md` task **M0-0** — a half-day manual recon
+Start at `docs/IMPLEMENTATION-PLAN.md` task **M0-0** ,  a half-day manual recon
 spike that answers the two questions the architecture rests on (is SARAS
 importable, and do schools actually publish parseable fees) and produces the
 fixtures M1 and M2 need. Code starts at M0-1.
 
 **Import is national; enrichment is campaign-scoped** (ADR-017). The registry
 list is ~38 POSTs and nearly free, so the directory covers every metro from day
-one; the expensive MPD enrichment follows `enrichment_priority` — Karnataka,
+one; the expensive MPD enrichment follows `enrichment_priority` ,  Karnataka,
 Tamil Nadu, Maharashtra, Telangana first, then tier-1 metros.
 
 **Fee data:** ~30% of fee documents are scanned images. ADR-016 adds local OCR

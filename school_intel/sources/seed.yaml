@@ -43,9 +43,17 @@
   authority_tier: 2
   refresh_days: 90
   rate_limit_rps: 1.0
-  robots_ok: null
+  robots_ok: true
   enabled: true
-  tos_note: "[UNVERIFIED] Export shape unconfirmed; check for the ISC row specifically."
+  tos_note: >-
+    [VERIFIED 2026-09-15] The list is on locate.cisce.org, NOT cisce.org, which
+    publishes no directory. robots.txt on both hosts allows User-agent: * (only
+    /wp-admin/ is disallowed); the named AI crawlers - GPTBot, CCBot, ClaudeBot,
+    Google-Extended, Bytespider - are Disallow: / and we are none of them. The
+    Cloudflare Content-Signal sets ai-train=no, use=reference: we do not train on
+    it and the UI cites the source, so both are honoured. GET
+    /result?country=India&affiliation=ISC&page=N - POST returns 405 and the
+    Laravel _token is not required. ISC is the class-12 gate: 1,928 of 3,334 rows.
 
 - id: ib
   kind: registry

@@ -8,7 +8,7 @@ Every decision below is tagged with its epistemic status. **Do not treat an
 |---|---|
 | `[EXTERNAL-FACT]` | Verified against a live external source on 2026-08-22. |
 | `[STAKEHOLDER]` | Stated directly by the project owner. Authoritative; not negotiable by a coding agent. |
-| `[DOC]` | Asserted in the original `Project-Doc.md`. May be right or wrong — check the verdict. |
+| `[DOC]` | Asserted in the original `Project-Doc.md`. May be right or wrong ,  check the verdict. |
 | `[INFERENCE]` | Engineering judgement drawn from the facts above. Revisable with evidence. |
 | `[BUSINESS]` | Still open. Needs a human. Do not invent an answer. |
 
@@ -80,7 +80,7 @@ semaphore is sufficient. **Do not add Scrapy.**
 `[INFERENCE]` New affiliations, level upgrades (Secondary to Senior Secondary),
 principal changes, address changes, and disaffiliations are all visible by
 snapshotting the CBSE list monthly and diffing it. Deterministic, authoritative,
-no LLM, no defamation risk, and it **works for all 29,000 schools** — whereas
+no LLM, no defamation risk, and it **works for all 29,000 schools** ,  whereas
 news coverage exists for maybe the top 500.
 
 `[STAKEHOLDER]` Reputation/controversy signals are **demoted to a later phase.**
@@ -92,14 +92,14 @@ performance per school is not obtainable. CBSE discontinued school-wise merit
 lists and rankings in 2017 and confirmed none for 2026, publishing only aggregate
 region and school-type statistics. The only school-level result data is
 self-published by schools, which is marketing-inflated *and* contains student
-PII — see ADR-006.
+PII ,  see ADR-006.
 
 ## ADR-003 - Google Places / Maps cannot be a data source
 
 `[EXTERNAL-FACT]` Google Maps Platform Service Specific Terms: `place_id` may be
 stored indefinitely, Places latitude/longitude may be cached for at most 30
 consecutive days, and **all other Places content must not be pre-fetched, cached,
-or stored** — names, phone numbers, ratings, reviews, photos.
+or stored** ,  names, phone numbers, ratings, reviews, photos.
 
 `[INFERENCE]` A permanent institution database built on Places is a terms
 violation, not a cost trade-off. **Places is excluded from the source registry.**
@@ -125,7 +125,7 @@ The doc requires "verified `legal_owning_entity` from registration docs."
 `[EXTERNAL-FACT]` There is no national registry of trusts or societies in India.
 MCA covers companies and Section-8 entities only (~3.67M, mirrored on
 data.gov.in). Public charitable trusts register with state Charity Commissioners
-or sub-registrars — decentralised and largely not machine-readable. Most Indian
+or sub-registrars ,  decentralised and largely not machine-readable. Most Indian
 private schools are trust- or society-run, so the doc's rule would merge almost
 nothing.
 
@@ -141,10 +141,10 @@ aspiration into a week-2 deliverable.
 The **institution-level** half is what this system does. The student-level half is
 out of scope by design.
 
-`[EXTERNAL-FACT]` DPDP Act 2023 s.2(f) defines a child as **under 18** — most of
+`[EXTERNAL-FACT]` DPDP Act 2023 s.2(f) defines a child as **under 18** ,  most of
 class 11-12. s.9(1) requires **verifiable parental consent** before processing any
 child's personal data. s.9(3) imposes **absolute prohibitions** on tracking,
-behavioural monitoring, and targeted advertising directed at children —
+behavioural monitoring, and targeted advertising directed at children , 
 prohibitions that cannot be unlocked by parental consent. Penalties reach
 Rs 200 crore. An exemption pathway exists for educational institutions, but it
 covers an institution processing its own students' data, not a third party
@@ -177,8 +177,8 @@ v1; the architecture must be capable of going truly national without rework.**
 | **C** | Premium integrated PU / coaching campuses (Deeksha, BASE, premium Narayana / Sri Chaitanya, metro Allen / FIITJEE) | ~500-1,500 | Highest PCM density anywhere, and centralised enough for HQ deals. |
 | **D** | Mass-market PU / junior colleges, non-metro mid-fee CBSE | ~25k+ | **Schema-ready, not ingested in v1.** Mostly below the affordability floor. |
 
-`[EXTERNAL-FACT]` Tier D is large and real — Karnataka alone has 2,084 PU
-colleges, Telangana ~500 board-affiliated junior colleges — and in Karnataka,
+`[EXTERNAL-FACT]` Tier D is large and real ,  Karnataka alone has 2,084 PU
+colleges, Telangana ~500 board-affiliated junior colleges ,  and in Karnataka,
 Maharashtra, Telangana, AP and TN classes 11-12 are frequently a *separate
 institution* appearing in no school registry. The data model therefore uses
 `institution_type` rather than assuming "school", so Tier D can be switched on
@@ -189,7 +189,7 @@ later as a config and importer change, **never a schema migration**.
 **Verdict on `[DOC]` 8: right feature, wrong target.**
 
 `[INFERENCE]` For student recruitment a K-12 chain relationship confers little
-leverage — campus access is negotiated per principal. A **coaching/PU chain**
+leverage ,  campus access is negotiated per principal. A **coaching/PU chain**
 relationship confers enormous leverage.
 
 `[EXTERNAL-FACT]` Narayana operates 950+ institutions across 250+ cities in 23
@@ -198,7 +198,7 @@ first-party campus directories (e.g. `narayanagroup.com/centers`,
 `baseedu.in/centers.php`).
 
 `[INFERENCE]` So group resolution for Tier C is an **authoritative first-party
-import**, not fuzzy brand matching — easier and more accurate than 6.6's
+import**, not fuzzy brand matching ,  easier and more accurate than 6.6's
 machinery. `[STAKEHOLDER]` Both BD motions are in scope: per-institution seminar
 slots and chain-HQ deals.
 
@@ -212,15 +212,15 @@ rather than a sub-score, while 7 puts "10% Data Confidence" *inside* the score.
 
 The fatal gap: `school_sources` records *that* a URL was fetched, never *what it
 said*. Without stored raw bytes, improving an extraction prompt requires
-re-crawling everything — contradicting the stated requirement to improve
+re-crawling everything ,  contradicting the stated requirement to improve
 extraction without rebuilding from scratch.
 
 `[INFERENCE]` Three layers:
 
-1. **Raw** (immutable, append-only) — `fetches`, `raw_documents`, content-addressed.
-2. **Observations** (append-only claims) — every extracted value with source,
+1. **Raw** (immutable, append-only) ,  `fetches`, `raw_documents`, content-addressed.
+2. **Observations** (append-only claims) ,  every extracted value with source,
    fetch, `evidence_span`, extractor version, confidence.
-3. **Canonical** (derived, disposable) — `institutions` et al., produced by a
+3. **Canonical** (derived, disposable) ,  `institutions` et al., produced by a
    deterministic resolver.
 
 The canonical layer is 100% reproducible from raw + observations + human
@@ -231,7 +231,7 @@ See `docs/DATA-MODEL.md`.
 ## ADR-010 - Fit and Confidence are two numbers, never blended
 
 **Verdict on `[DOC]` 7: rejected.** Blending data confidence into the opportunity
-score makes "small institution" indistinguishable from "unknown institution" —
+score makes "small institution" indistinguishable from "unknown institution" , 
 which the doc's own 6.14 correctly forbids.
 
 `[INFERENCE]` Emit **Fit** (0-100, deterministic, fully explainable) and
@@ -245,7 +245,7 @@ unknown fees is not scored as though it were cheap. See `docs/SCORING.md`.
 `[INFERENCE]` Derived from the Rs 6L/yr `[STAKEHOLDER]` figure. Annual school fee
 is the strongest available proxy for ability to fund the program, and
 `[EXTERNAL-FACT]` it is obtainable free from the Mandatory Public Disclosure page
-(ADR-001) — a field `Project-Doc.md` never mentions at all.
+(ADR-001) ,  a field `Project-Doc.md` never mentions at all.
 
 The curve collapses at the bottom (a family paying Rs 15k/yr cannot fund Rs 6L/yr)
 and decays only mildly at the top (very high-fee families weigh overseas study,
@@ -305,7 +305,7 @@ same output.
 `[INFERENCE]` The suggestion was considered and rejected. It is the worst of the
 three options:
 
-- Token-classification BERT needs **labelled training data** — several hundred
+- Token-classification BERT needs **labelled training data** ,  several hundred
   hand-annotated pages. Producing that is strictly more work than writing the
   parser it would replace.
 - An off-the-shelf SQuAD-style QA model is unreliable on tables and numerals.
@@ -337,7 +337,7 @@ peers writing to the same schema. So:
   `EXTRACTION_LLM_ENABLED=true` for that field is a one-line change, not a rewrite.
 
 This is the payoff for storing raw bytes. **ADR-015 becomes more important, not
-less** — deterministic coverage is now an unknown to be measured rather than
+less** ,  deterministic coverage is now an unknown to be measured rather than
 assumed.
 
 ### The honest trade-off
@@ -353,8 +353,8 @@ deterministically and may stay sparse: **fees in non-tabular prose layouts**, an
 
 Extending `[DOC]` 5.4, which was correct: search, filtering, ranking, scoring,
 geography, conflict resolution, and entity merging are deterministic code. That
-was always true and is now true of extraction as well. Every observation — parser,
-regex, or LLM — must still carry an `evidence_span`. See `AGENTS.md`.
+was always true and is now true of extraction as well. Every observation ,  parser,
+regex, or LLM ,  must still carry an `evidence_span`. See `AGENTS.md`.
 
 ## ADR-014 - Entity resolution is deterministic; no embeddings
 
@@ -369,7 +369,7 @@ implemented.
 ## ADR-015 - Evaluation is a first-class deliverable
 
 **Verdict on `[DOC]`: missing entirely.** For a data-quality system this was the
-largest omission — "improve the prompts" is unfalsifiable without a measurement
+largest omission ,  "improve the prompts" is unfalsifiable without a measurement
 harness.
 
 `[INFERENCE]` ~200 hand-verified institutions in `eval_gold`, per-field precision
@@ -382,7 +382,7 @@ does not report its eval delta is not reviewable. See
 `[BUSINESS decided 2026-09-05]` `[VERIFIED M0-0]` 30% of resolved fee documents
 (13 of 44 sampled) are scanned images with no text layer. `pdfplumber` returns
 0-1 characters. No label parser, no regex and **no text LLM** reads an image, so
-tier 3 does not rescue this either — the gap is not an extraction-quality problem
+tier 3 does not rescue this either ,  the gap is not an extraction-quality problem
 but an input-modality one. Without OCR, fee coverage caps at roughly 30%; with
 it, roughly 45%.
 
@@ -391,7 +391,7 @@ extractors, applied **only** to a PDF that (a) came from a fee-structure link or
 a fee-labelled row, and (b) yields under ~50 characters of extractable text.
 
 `rapidocr-onnxruntime`, not Tesseract. It installs from PyPI with no system
-binary, which keeps `uv sync` sufficient to run the pipeline — the property
+binary, which keeps `uv sync` sufficient to run the pipeline ,  the property
 ADR-012 and ADR-013 both protect. It does not pull PyTorch the way `easyocr`
 does. Tesseract is the fallback if accuracy proves inadequate, and that costs a
 documented system dependency.
@@ -419,7 +419,7 @@ out of that sample and are not optional:
    before comparing, or every label misses.
 2. **Take the TOTAL column, not the first figure.** Indian school fees are
    published as instalments: `55500 + 27700 x 3 = 138600`. Reading the first
-   number yields Rs 55,500 — a different affordability band and a wrong value.
+   number yields Rs 55,500 ,  a different affordability band and a wrong value.
    Where a total is absent, sum the instalment columns and record the arithmetic
    in `evidence_span`.
 3. **OCR mangles stylised text but not tabular digits.** `Principal` came back as
@@ -441,7 +441,7 @@ fee:
    error changes the ranking.
 5. Is measured separately in `make eval` (ADR-015). If OCR precision on the gold
    set is below the deterministic tiers by a wide margin, this ADR gets reversed
-   — the eval harness is what decides that, not opinion.
+   ,  the eval harness is what decides that, not opinion.
 
 ## ADR-017 - Import nationally, enrich by campaign
 
@@ -454,11 +454,11 @@ different costs and there is no reason to tie them together:
 
 | Stage | Scope | Cost |
 |---|---|---|
-| Registry import (S1) | **National — all states** | ~38 POSTs. The list already carries name, affiliation no, district, level, principal, address and website (`docs/SOURCES.md` S1) |
+| Registry import (S1) | **National ,  all states** | ~38 POSTs. The list already carries name, affiliation no, district, level, principal, address and website (`docs/SOURCES.md` S1) |
 | Detail + MPD enrichment | **Campaign geographies only** | 3-6 fetches per institution. This is the entire cost of the pipeline |
 
-So the directory is national from day one — a BD question about Hyderabad or
-Delhi NCR is answerable immediately, with contactable principal and website —
+So the directory is national from day one ,  a BD question about Hyderabad or
+Delhi NCR is answerable immediately, with contactable principal and website , 
 while the expensive per-institution enrichment follows the campaign. v1 enrichment
 priority: **Karnataka, Tamil Nadu, Maharashtra, Telangana**, then tier-1 metros.
 
@@ -482,27 +482,27 @@ complete, less legally clean route to a list we already have in full.
 
 Carry these forward verbatim; they are good and were arrived at carefully:
 
-- **5.4 — the AI boundary.** AI extracts and classifies; deterministic code does
+- **5.4 ,  the AI boundary.** AI extracts and classifies; deterministic code does
   search, filter, sort, aggregate, geography, and scoring. Correct, and extended
   in ADR-013.
-- **6.3 — city is never a safe join key alone.** Always `city + state`.
+- **6.3 ,  city is never a safe join key alone.** Always `city + state`.
   Gurgaon/Gurugram-class renames fragment data silently.
-- **6.7 — quantities are ranges, not points**, and a >20% disagreement between
+- **6.7 ,  quantities are ranges, not points**, and a >20% disagreement between
   sources is itself signal, to be surfaced with attribution rather than averaged.
   Applied here to fees as well as enrollment.
-- **6.8 — leadership churns annually**; use `effective_from`/`verified_at` and
+- **6.8 ,  leadership churns annually**; use `effective_from`/`verified_at` and
   flag anything older than ~12 months as stale rather than presenting it as fact.
-- **6.10 — never auto-merge above the ambiguity threshold.** Route to review.
+- **6.10 ,  never auto-merge above the ambiguity threshold.** Route to review.
   Auto-merging is cheap to build and expensive to undo once BD has contacted the
   wrong branch.
-- **6.11 — explicit per-field source priority**, not "last scrape wins", and
+- **6.11 ,  explicit per-field source priority**, not "last scrape wins", and
   retain the losing value. Implemented literally in `docs/SOURCES.md`.
-- **6.12 — never collect student-level data**, and rate-limit per-domain rather
+- **6.12 ,  never collect student-level data**, and rate-limit per-domain rather
   than only globally, because a small school's shared hosting will fall over.
   Hardened into ADR-006.
-- **6.13 — natural language is a translation layer onto the structured filters**,
+- **6.13 ,  natural language is a translation layer onto the structured filters**,
   never a second search path.
-- **6.14 — show the score breakdown**; missing data reduces confidence rather
+- **6.14 ,  show the score breakdown**; missing data reduces confidence rather
   than silently zeroing a sub-score. Implemented properly in ADR-010.
 
 ---

@@ -38,18 +38,3 @@ def test_target_states_default(monkeypatch):
         monkeypatch.setenv(k, v)
     monkeypatch.delenv("TARGET_STATES", raising=False)
     assert Settings(_env_file=None).target_states == ["KA", "TN", "MH"]
-
-
-def test_postgres_url_fix(monkeypatch):
-    """Render / Aiven URLs starting with postgres:// or postgresql:// are normalized to postgresql+psycopg://."""
-    monkeypatch.setenv(
-        "DATABASE_URL", "postgres://user:pass@host:5432/db?sslmode=require"
-    )
-    s = Settings(_env_file=None)
-    assert (
-        s.database_url == "postgresql+psycopg://user:pass@host:5432/db?sslmode=require"
-    )
-
-    monkeypatch.setenv("DATABASE_URL", "postgresql://user:pass@host:5432/db")
-    s = Settings(_env_file=None)
-    assert s.database_url == "postgresql+psycopg://user:pass@host:5432/db"

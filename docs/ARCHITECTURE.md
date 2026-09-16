@@ -95,9 +95,9 @@ independently runnable and idempotent.
 | 3a Parse (tier 1) | `raw_documents` row | `observations` rows | new/changed `content_hash` | `(content_hash, extractor, field, entity_key)` |
 | 3b Patterns (tier 2) | `raw_documents` row | `observations` rows | fields tier 1 missed | same as 3a |
 | 3c LLM (tier 3, **off**) | `raw_documents` row | `observations` rows | only if enabled **and** tiers 1-2 found nothing for a decision-critical field | same as 3a |
-| 4 — | — | — | — | append-only, never updated in place |
+| 4 ,  | ,  | ,  | ,  | append-only, never updated in place |
 | 5 Resolve | all observations + overrides | canonical rows | after extraction, or on demand | full recompute is the normal mode |
-| 6 — | — | — | — | truncate-and-rebuild is safe and expected |
+| 6 ,  | ,  | ,  | ,  | truncate-and-rebuild is safe and expected |
 | 6b Group rollup | canonical | `groups.qualifying_campus_count` | after resolve, **before** score | full recompute |
 | 7 Score | canonical + `scoring.yaml` | `scores` rows | after 6b, or on config change | `(institution_id, model_version, campaign, computed_at)` |
 | 8 Signals | two `registry_snapshots` | `signals` rows | monthly | `(institution_id, signal_type, event_date)` |
@@ -105,17 +105,17 @@ independently runnable and idempotent.
 
 Stage 6b exists to break a real circular dependency: scoring's group-leverage
 component reads `qualifying_campus_count`, which must therefore be computed from
-the hard gate and the affordability floor **only** — never from a Fit score. See
+the hard gate and the affordability floor **only** ,  never from a Fit score. See
 `docs/DATA-MODEL.md`, "Five things that are easy to get wrong", item 2. If
 anything in `resolve/` ever imports from `score/fit.py`, the cycle is back.
 
 ### The two rules that make everything else work
 
-**Rule 1 — a user request never triggers a fetch or an LLM call.** Reads hit
+**Rule 1 ,  a user request never triggers a fetch or an LLM call.** Reads hit
 Postgres only. This is the one architectural principle `Project-Doc.md` got
 exactly right and it must not be eroded for a "just-in-time enrichment" feature.
 
-**Rule 2 — the canonical layer is disposable.** `make rebuild` drops and
+**Rule 2 ,  the canonical layer is disposable.** `make rebuild` drops and
 regenerates stages 5-7 from stages 1-4 plus `overrides`. If any code change makes
 a rebuild lossy, that change is wrong. This is what lets you improve extraction
 prompts, models, source priorities, and scoring formulas without re-crawling and
@@ -264,7 +264,7 @@ failed fetch quietly leave a field null-and-unexplained.
 **Extraction failures.** A malformed or schema-invalid LLM response is retried
 once, then written to `review_queue` with `kind='low_confidence_extraction'`.
 Never write a guessed value. An absent observation is always better than a wrong
-one — a wrong answer is worse than no answer.
+one ,  a wrong answer is worse than no answer.
 
 **Resolve ambiguity.** Match score in the mid-band goes to `review_queue` with
 `kind='merge_candidate'`. Never auto-merge above the ambiguity threshold
@@ -273,7 +273,7 @@ one — a wrong answer is worse than no answer.
 **Source structure drift.** Every deterministic parser asserts an expected shape
 (minimum row count, required column headers). A parser that suddenly yields 0
 rows or fewer than 50% of the previous snapshot's rows must **fail loudly and
-abort**, not write an empty snapshot — otherwise stage 8 will emit thousands of
+abort**, not write an empty snapshot ,  otherwise stage 8 will emit thousands of
 bogus `disaffiliation` signals. This is the single most dangerous failure mode in
 the system.
 
@@ -282,7 +282,7 @@ its key. Killing a worker mid-run is safe.
 
 ## Observability
 
-Minimum viable, in Postgres — no external stack needed at this scale:
+Minimum viable, in Postgres ,  no external stack needed at this scale:
 
 - `fetches` gives request volume, status distribution, latency per source.
 - A `pipeline_runs` table records stage, started/finished, rows in/out, and
@@ -308,7 +308,7 @@ API dependency**. Every stage runs locally against Postgres and object storage.
 
 The binding constraint is therefore **wall-clock on fetching**, not inference.
 At 1 request/second/domain across many domains concurrently, a full enrichment
-pass is hours, not days — and a re-extraction pass over stored documents is
+pass is hours, not days ,  and a re-extraction pass over stored documents is
 **minutes**, because it makes no network calls at all.
 
 This is the real payoff of ADR-009: tuning a parser is a minutes-long loop.

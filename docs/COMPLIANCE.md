@@ -4,11 +4,11 @@ This document is **normative**. A code change that weakens anything marked
 **HARD GATE** must be rejected in review regardless of what it enables.
 
 Not legal advice. The DPDP analysis below is well-sourced but should be confirmed
-with counsel before the system carries real BD activity — see "Open items".
+with counsel before the system carries real BD activity ,  see "Open items".
 
 ---
 
-## 1. The student data boundary — HARD GATE
+## 1. The student data boundary ,  HARD GATE
 
 **Rule: this system stores institution-level data only. Never student-level data.
 No exceptions, no feature flag, no "just for testing".**
@@ -27,7 +27,7 @@ No exceptions, no feature flag, no "just for testing".**
 - Penalties reach **Rs 200 crore**.
 
 An exemption pathway exists for educational institutions, but it covers an
-institution processing its own students' data — not a third party assembling a
+institution processing its own students' data ,  not a third party assembling a
 targeting list about other institutions' students.
 
 ### The actual risk is accidental, not deliberate
@@ -38,9 +38,9 @@ names and marks and photographs, admission lists, scholarship award lists,
 prize-day programmes. A generic "fetch the school's site and extract what you
 find" implementation will hoover these up on day one.
 
-`Project-Doc.md` 6.12 got this right — "explicitly exclude admission-list or
+`Project-Doc.md` 6.12 got this right ,  "explicitly exclude admission-list or
 result PDFs from scraper scope entirely, rather than relying on downstream
-filtering" — and this document hardens it into code.
+filtering" ,  and this document hardens it into code.
 
 ### Enforcement: `fetch/denylist.py`, checked before the request is made
 
@@ -66,7 +66,7 @@ Rules for this module:
 
 1. Match case-insensitively against the **full URL** (path and query).
 2. A hit writes a `fetches` row with `denylist_hit` set and `http_status = NULL`.
-   We record that we *declined* to fetch — an auditable decision, not a gap.
+   We record that we *declined* to fetch ,  an auditable decision, not a gap.
 3. `fee`, `fees`, and `fee-structure` must **not** be blocked. Fee pages are the
    highest-value target in the system. Test this explicitly; a broad `r"fee"`
    pattern would be a catastrophic own-goal.
@@ -81,7 +81,7 @@ Rules for this module:
    The compliant CBSE Appendix-IX proforma titles its section
    **"C: RESULT AND ACADEMICS"**, and the fee-structure link sits inside that
    section. A text-level `r"result"` rule would therefore blocklist essentially
-   every compliant Mandatory Disclosure page in the country — silently deleting
+   every compliant Mandatory Disclosure page in the country ,  silently deleting
    the only source of fee data in the system while looking like it was working.
    The per-URL design already handles this correctly: it declines to follow the
    sibling *board-result* links while still permitting the fee link one row
@@ -106,7 +106,7 @@ Only **work-context professional data** for named staff in a decision-making
 role: name, job title, and the institution's own published institutional contact.
 
 `[EXTERNAL-FACT]` The best-footed of these is the principal's name from CBSE
-SARAS — published by a government body as part of a statutory affiliation
+SARAS ,  published by a government body as part of a statutory affiliation
 disclosure. Prefer registry-sourced person data over website-scraped person data
 wherever both exist (this is also why `principal_name` from `cbse_saras` is only
 outranked by `cbse_mpd`, itself a statutory disclosure).
@@ -114,7 +114,7 @@ outranked by `cbse_mpd`, itself a statutory disclosure).
 **Never store:** an individual's personal mobile number, personal email,
 residential address, photograph, date of birth, salary, or qualifications beyond
 what is needed to identify the right person. If a page offers a staff member's
-personal mobile, do not record it — take the school's office number instead.
+personal mobile, do not record it ,  take the school's office number instead.
 
 ---
 
@@ -154,7 +154,7 @@ importer for that source is enabled.
 
 **Attribution.** Every institution profile shows its sources with links.
 This is both a ToS courtesy and the "why does the system believe this" feature
-(`docs/ARCHITECTURE.md`) — the same mechanism serves both.
+(`docs/ARCHITECTURE.md`) ,  the same mechanism serves both.
 
 ---
 
@@ -162,7 +162,7 @@ This is both a ToS courtesy and the "why does the system believe this" feature
 
 **Purpose limitation.** Collect only what serves the stated purpose: ranking
 institutions and identifying the right professional contact. If a field cannot be
-tied to that purpose, do not collect it — this is why principal *qualifications*
+tied to that purpose, do not collect it ,  this is why principal *qualifications*
 are parsed from CBSE and deliberately discarded (`docs/SOURCES.md` S1).
 
 **Retention.** `raw_documents` and `observations` are append-only by design
@@ -208,7 +208,7 @@ that compliance review must precede launch rather than be retrofitted.
 - [ ] Counsel sign-off on the DPDP position, specifically the professional-contact
       basis and the institution-as-consent-gateway outreach model
 
-## Open items — `[BUSINESS]`
+## Open items ,  `[BUSINESS]`
 
 1. **Counsel review** of the DPDP position in section 1. The analysis is
    well-sourced but the conclusion is ours, not a lawyer's.

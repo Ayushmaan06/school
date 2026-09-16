@@ -65,6 +65,7 @@ SCHOOL_COLUMNS = """
     i.pincode, i.address, i.website, i.email, i.phone, i.email_guessed,
     i.fee_annual_inr_min, i.fee_annual_inr_max, i.fee_annual_inr_mid, i.fee_year,
     i.total_enrollment, i.enrollment_is_estimated, i.total_teachers,
+    i.student_count_guessed,
     i.class_12_total, i.pcm_12_count, i.pcm_12_is_estimated,
     i.has_class_12, i.status, i.year_founded, i.legal_entity_name,
     (SELECT p.full_name FROM roles r JOIN people p ON p.id = r.person_id

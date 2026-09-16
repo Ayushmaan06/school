@@ -1,4 +1,4 @@
-# Status — 2026-09-06
+# Status ,  2026-09-06
 
 Where the build is, what to do next, and what is deliberately not done.
 For how to *operate* the tool, see `RUNBOOK.md`.
@@ -7,7 +7,7 @@ For how to *operate* the tool, see `RUNBOOK.md`.
 
 ## Short answer: is the UI all that's left?
 
-**No — the UI is already built and working.** Map, state pages, city search,
+**No ,  the UI is already built and working.** Map, state pages, city search,
 CSV export and the "Get more details" button all run today.
 
 What actually remains is three small things and a pile of optional work:
@@ -132,7 +132,7 @@ Following it is a small change to the discovery step and would improve student
 coverage; it was skipped deliberately to prioritise contacts.
 
 **The CBSE registry serves a CAPTCHA under sustained load.** Detected and
-handled — the tool stops rather than hammering, and never stores the CAPTCHA
+handled ,  the tool stops rather than hammering, and never stores the CAPTCHA
 page as if it were data. It caps how fast the registry can be re-crawled.
 
 **The eval gold set has 11 rows, not the ~200 the plan wants.** It has already
@@ -149,13 +149,13 @@ newest code and the least covered. Everything behind them is well tested.
 
 Each was considered and set aside for this handover, not forgotten:
 
-* **XLSX export** — CSV works and opens in Excel; XLSX adds number formatting
-* **Other boards** (CISCE, IB, Cambridge) — more schools, none of them CBSE
-* **UDISE+ import** — would give authoritative enrollment for every school in
+* **XLSX export** ,  CSV works and opens in Excel; XLSX adds number formatting
+* **Other boards** (CISCE, IB, Cambridge) ,  more schools, none of them CBSE
+* **UDISE+ import** ,  would give authoritative enrollment for every school in
   India, but its endpoints need a browser devtools session to capture first
-* **Entity matching across registries** — only needed once a second registry exists
-* **Change signals, natural-language search** — genuinely optional for v1
-* **Scraping JustDial** — decided against; we link out instead. Their markup is
+* **Entity matching across registries** ,  only needed once a second registry exists
+* **Change signals, natural-language search** ,  genuinely optional for v1
+* **Scraping JustDial** ,  decided against; we link out instead. Their markup is
   built from build-hash class names that change on every deploy, so a scraper
   would break silently after handover
 
@@ -171,5 +171,5 @@ Each was considered and set aside for this handover, not forgotten:
    batches, so a quiet database is normal and not a hang.
 4. **Run enrichment on its own.** It was killed by the OS for memory when run
    alongside other heavy jobs. `mark-enriched` recovers the progress.
-5. **Every knob is config, not code** — see the table at the end of
+5. **Every knob is config, not code** ,  see the table at the end of
    `RUNBOOK.md`. Those lists grow every time a new website layout appears.

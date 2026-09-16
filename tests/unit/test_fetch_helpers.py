@@ -4,7 +4,11 @@ from pathlib import Path
 
 import pytest
 
-from school_intel.fetch.client import normalize_url, registrable_domain
+from school_intel.fetch.client import (
+    is_interstitial,
+    normalize_url,
+    registrable_domain,
+)
 from school_intel.fetch.store import content_hash, storage_path
 
 
@@ -52,3 +56,16 @@ def test_storage_path_fans_out_and_keeps_pdf_suffix():
     assert html.parts[-3:-1] == ("9f", "2a")
     assert pdf.suffix == ".pdf"
     assert html.suffix == ".bin"
+
+
+def test_the_current_cloudflare_challenge_is_an_interstitial():
+    """[VERIFIED 2026-09-15] locate.cisce.org serves a 403 whose body says
+    "Just a moment..." and whose headers say `cf-mitigated: challenge`. The
+    legacy markers matched none of it, so it read as a plain 403: nothing was
+    stored, but the circuit breaker never fired and a run would grind through
+    every remaining page against a wall."""
+    assert is_interstitial(b"<title>Just a moment...</title>")
+    assert is_interstitial(b"<html>window._cf_chl_opt = {}</html>")
+    # The header is authoritative whatever the body copy happens to be today.
+    assert is_interstitial(b"<html>anything</html>", {"cf-mitigated": "challenge"})
+    assert not is_interstitial(b"<html>a real page</html>", {"server": "cloudflare"})

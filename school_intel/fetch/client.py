@@ -11,8 +11,10 @@ decision rather than a gap.
 """
 
 import asyncio
+import tempfile
 import time
 from collections import defaultdict
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Self
@@ -38,13 +40,52 @@ INTERSTITIAL_MARKERS = (
     b"<title>Validation request</title>",
     b"Checking your browser before accessing",
     b"cf-browser-verification",
+    # [VERIFIED 2026-09-15] The CURRENT Cloudflare challenge, served as HTTP 403
+    # with a "Just a moment..." title. The two markers above it are the legacy
+    # 2019-era wording and match none of it, so locate.cisce.org was being
+    # counted as a plain 403 and the circuit breaker never fired.
+    b"Just a moment...",
+    b"_cf_chl_opt",
 )
+
+# Cloudflare states the mitigation in a header, which is cheaper and far more
+# stable than matching body copy that changes with every redesign.
+CHALLENGE_HEADER = "cf-mitigated"
+
 # Consecutive interstitials from one domain before we stop fetching it this run.
 CIRCUIT_BREAKER_THRESHOLD = 3
 
+# Domains fetched with `curl` instead of `httpx`.
+#
+# [VERIFIED 2026-09-15] locate.cisce.org answers httpx with a Cloudflare
+# challenge (403, `cf-mitigated: challenge`) on every request, and answers curl
+# with 200 on every request - same User-Agent, same machine, same minute, with
+# or without browser Accept headers, over HTTP/1.1 and HTTP/2 alike. The
+# discriminator is the TLS handshake fingerprint, which scores httpx as
+# automated and curl as not.
+#
+# This is a transport swap, NOT an impersonation. We keep announcing ourselves
+# as TensorSchoolIntel with a contact address, we obey the same robots.txt,
+# denylist and rate limit as every other fetch, and curl is an ordinary HTTP
+# client rather than a spoofed browser. CISCE's own robots.txt allows us
+# (`User-agent: *` -> `Allow: /`) and can disallow us by name at any time; the
+# challenge is an automated bot score, not an access decision.
+#
+# Deliberately NOT here: curl_cffi / curl-impersonate TLS impersonation, which
+# is real evasion, and a headless browser, which is ADR-012's rejected
+# Playwright dependency by another name. If a domain needs either, drop it as a
+# source instead and record why.
+CURL_TRANSPORT_DOMAINS = frozenset({"cisce.org"})
 
-def is_interstitial(body: bytes) -> bool:
-    """A bot-check page masquerading as content."""
+
+def is_interstitial(body: bytes, headers: Mapping[str, str] | None = None) -> bool:
+    """A bot-check page masquerading as content.
+
+    The header is checked first: a challenge says so in `cf-mitigated` whatever
+    the body happens to look like this quarter.
+    """
+    if headers is not None and headers.get(CHALLENGE_HEADER):
+        return True
     head = body[:4096]
     return any(marker in head for marker in INTERSTITIAL_MARKERS)
 
@@ -156,6 +197,79 @@ class Fetcher:
             raise RuntimeError("Fetcher must be used as an async context manager")
         return self._client
 
+    async def _curl_get(
+        self, url: str, headers: dict[str, str] | None
+    ) -> httpx.Response:
+        """One GET through curl, returned as an httpx.Response.
+
+        Reusing httpx's own Response type means the whole pipeline downstream -
+        interstitial detection, media type, storage, the `fetches` row - is
+        untouched and cannot drift between the two transports.
+
+        Called only for CURL_TRANSPORT_DOMAINS, and only AFTER the denylist,
+        robots and rate-limit gates above. There is no path to this that skips
+        them. Arguments are passed as a list, never a shell string.
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            body_path = Path(tmp) / "body"
+            header_path = Path(tmp) / "headers"
+            args = [
+                "curl",
+                "-sS",
+                "--compressed",
+                "--max-time",
+                str(int(TIMEOUT)),
+                "--location",
+                "--max-redirs",
+                str(MAX_REDIRECTS),
+                "--user-agent",
+                self.user_agent,
+                "--output",
+                str(body_path),
+                "--dump-header",
+                str(header_path),
+                "--write-out",
+                "%{http_code}",
+            ]
+            for key, value in (headers or {}).items():
+                args += ["--header", f"{key}: {value}"]
+            args.append(url)
+
+            try:
+                proc = await asyncio.create_subprocess_exec(
+                    *args,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE,
+                )
+            except OSError as exc:  # curl absent from the image
+                raise httpx.TransportError(f"curl unavailable: {exc}") from exc
+            stdout, stderr = await proc.communicate()
+            if proc.returncode != 0:
+                raise httpx.TransportError(
+                    f"curl exit {proc.returncode}: {stderr.decode('utf-8', 'replace')[:200]}"
+                )
+
+            # With --location the header file holds one block per hop; only the
+            # final response describes the bytes we actually kept.
+            blocks = header_path.read_text("utf-8", errors="replace").split("\r\n\r\n")
+            final = next((b for b in reversed(blocks) if b.strip()), "")
+            # `--compressed` means curl hands back decoded bytes, so the origin's
+            # own content-encoding and content-length no longer describe them.
+            # Passing them on makes httpx.Response try to gunzip plain HTML.
+            parsed = [
+                (name.strip(), value.strip())
+                for name, _, value in (
+                    line.partition(":") for line in final.splitlines()[1:]
+                )
+                if name.strip()
+                and name.strip().lower() not in {"content-encoding", "content-length"}
+            ]
+            return httpx.Response(
+                status_code=int(stdout.decode("ascii", "ignore").strip() or 0),
+                headers=parsed,
+                content=body_path.read_bytes(),
+            )
+
     async def fetch(
         self,
         session: Session,
@@ -200,9 +314,15 @@ class Fetcher:
             await self._bucket.wait(domain, rps)
             started = time.monotonic()
             try:
-                response = await self.client.request(
-                    method, url, data=data, headers=headers
-                )
+                # The transport swap is the LAST thing to happen, after every
+                # gate above. POST still goes through httpx: no source needing
+                # curl needs a POST, and one transport per verb is enough.
+                if domain in CURL_TRANSPORT_DOMAINS and method == "GET":
+                    response = await self._curl_get(url, headers)
+                else:
+                    response = await self.client.request(
+                        method, url, data=data, headers=headers
+                    )
             except httpx.HTTPError as exc:
                 return self._record(
                     session,
@@ -226,7 +346,7 @@ class Fetcher:
         )
         # An interstitial is never stored: it is not this URL's content, and
         # keeping it would let a later extraction pass mistake it for one.
-        if is_interstitial(response.content):
+        if is_interstitial(response.content, response.headers):
             self._interstitials[domain] += 1
             return self._record(
                 session,

@@ -17,11 +17,18 @@ from typing import Any
 # resolve() will refuse to guess one.
 FIELD_PRIORITY: dict[str, tuple[str, ...]] = {
     "name": ("cbse_saras", "cisce", "ib", "cambridge", "udise", "cbse_mpd"),
-    "address": ("cbse_saras", "udise", "cbse_mpd"),
-    "pincode": ("cbse_saras", "udise", "cbse_mpd"),
-    "city": ("pin_centroids", "cbse_saras", "udise"),
-    "district": ("pin_centroids", "cbse_saras", "udise"),
-    "state": ("pin_centroids", "cbse_saras", "udise"),
+    # [M3-1] `cisce` sits directly after `cbse_saras` in every field the CISCE
+    # locator actually publishes. It was previously listed only for `name` and
+    # the board fields, which was invisible while CBSE was the only registry:
+    # the first CISCE import resolved 1,928 institutions with a correct board
+    # and a NULL address, pincode, state, website and principal, because a
+    # source absent from a field's tuple has its observations dropped rather
+    # than ranked. Adding a registry means revisiting this table, every time.
+    "address": ("cbse_saras", "cisce", "udise", "cbse_mpd"),
+    "pincode": ("cbse_saras", "cisce", "udise", "cbse_mpd"),
+    "city": ("pin_centroids", "cbse_saras", "cisce", "udise"),
+    "district": ("pin_centroids", "cbse_saras", "cisce", "udise"),
+    "state": ("pin_centroids", "cbse_saras", "cisce", "udise"),
     "metro_area": ("pin_centroids",),
     # An institution's own site NEVER wins on board status - only the board that
     # awarded the affiliation can say whether it is current.
@@ -29,9 +36,9 @@ FIELD_PRIORITY: dict[str, tuple[str, ...]] = {
     "board_status": ("cbse_saras", "cisce", "ib", "cambridge"),
     "board_valid_from": ("cbse_saras", "cisce", "ib", "cambridge"),
     "board_valid_to": ("cbse_saras", "cisce", "ib", "cambridge"),
-    "has_class_12": ("cbse_saras", "udise", "cbse_mpd"),
+    "has_class_12": ("cbse_saras", "cisce", "udise", "cbse_mpd"),
     "grade_low": ("cbse_saras", "udise", "cbse_mpd"),
-    "grade_high": ("cbse_saras", "udise", "cbse_mpd"),
+    "grade_high": ("cbse_saras", "cisce", "udise", "cbse_mpd"),
     "streams": ("cbse_mpd", "cambridge", "ib", "cbse_saras"),
     # No other source has fee data at all (docs/SOURCES.md S2).
     "fee_annual_inr": ("cbse_mpd",),
@@ -48,18 +55,18 @@ FIELD_PRIORITY: dict[str, tuple[str, ...]] = {
     "management_type": ("udise", "cbse_saras"),
     "legal_entity_name": ("cbse_saras", "cbse_mpd"),
     # The school's own site is fresher for leadership (6.8, 6.11).
-    "principal_name": ("cbse_mpd", "cbse_saras", "udise"),
+    "principal_name": ("cbse_mpd", "cbse_saras", "cisce", "udise"),
     "principal_title": ("cbse_mpd", "cbse_saras"),
     "counsellor_name": ("cbse_mpd",),
     "counsellor_title": ("cbse_mpd",),
-    "website": ("cbse_mpd", "cbse_saras", "serper"),
+    "website": ("cbse_mpd", "cbse_saras", "cisce", "serper"),
     "email": ("cbse_mpd", "cbse_saras"),
     "phone": ("cbse_mpd", "cbse_saras"),
     "year_founded": ("cbse_saras", "udise"),
     "status": ("cbse_saras", "udise"),
     "institution_type": ("cbse_saras", "cisce", "ib", "cambridge", "udise"),
-    "gender": ("cbse_saras", "udise"),
-    "residential": ("cbse_saras", "udise"),
+    "gender": ("cbse_saras", "cisce", "udise"),
+    "residential": ("cbse_saras", "cisce", "udise"),
     "group_name": ("group_directory",),
     "group_campus_count": ("group_directory",),
 }

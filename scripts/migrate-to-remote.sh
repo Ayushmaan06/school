@@ -16,6 +16,8 @@
 #   bash scripts/migrate-to-remote.sh
 #
 set -euo pipefail
+export MSYS_NO_PATH_CONV=1
+export MSYS2_ARG_CONV_EXCL="*"
 
 : "${TARGET_DATABASE_URL:?Set TARGET_DATABASE_URL to the destination postgres:// URI}"
 

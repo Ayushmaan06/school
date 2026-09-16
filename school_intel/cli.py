@@ -1,7 +1,7 @@
 """Typer entrypoint. Stage commands; each delegates into its stage module.
 
 Stages are the ones in docs/ARCHITECTURE.md. Commands are stubs until their
-milestone lands — a stub raises NotImplementedError rather than silently
+milestone lands ,  a stub raises NotImplementedError rather than silently
 succeeding, so `--help` is honest about what exists.
 """
 
@@ -41,10 +41,17 @@ def import_(
     from school_intel.config import get_settings
     from school_intel.db import session_scope
     from school_intel.fetch.client import Fetcher
-    from school_intel.sources import cbse_saras
+    from school_intel.sources import cbse_saras, cisce
 
-    if source != cbse_saras.SOURCE_ID:
+    if source not in {cbse_saras.SOURCE_ID, cisce.SOURCE_ID}:
         raise typer.BadParameter(f"unknown or unimplemented source: {source}")
+    if source == cisce.SOURCE_ID and state:
+        # The locator's `state` filter takes a free-text state NAME, not the
+        # numeric codes --state carries for SARAS. Refuse rather than silently
+        # fetch the whole country under a flag the caller thinks narrowed it.
+        raise typer.BadParameter(
+            "--state is not supported for cisce; it imports nationally"
+        )
 
     settings = get_settings()
     logging.basicConfig(level=settings.log_level)
@@ -52,9 +59,13 @@ def import_(
     async def _run() -> None:
         async with Fetcher(settings.user_agent, settings.raw_store_path) as fetcher:
             with session_scope() as session:
-                importer = cbse_saras.SarasImporter(
-                    fetcher, session, states=list(state) if state else None
-                )
+                importer: object
+                if source == cisce.SOURCE_ID:
+                    importer = cisce.CisceImporter(fetcher, session)
+                else:
+                    importer = cbse_saras.SarasImporter(
+                        fetcher, session, states=list(state) if state else None
+                    )
                 result = await importer.run()
         typer.echo(
             f"rows={result.rows_seen} enqueued={result.jobs_enqueued} "
@@ -96,6 +107,14 @@ def enrich(
             " full re-visit.",
         ),
     ] = None,
+    board: Annotated[
+        str | None,
+        typer.Option(
+            help="Enrich one registry only: 'cbse' or 'cisce'. Omit for both."
+            " Keeps a campaign's yield readable - a mixed run averages a fresh"
+            " registry against a half-worked one.",
+        ),
+    ] = None,
 ) -> None:
     """STAGE 2+3 - MPD discovery and fee extraction (M2-1, M2-2, M2-2b).
 
@@ -113,6 +132,11 @@ def enrich(
     from school_intel.extract.mpd import run as mpd_run
     from school_intel.fetch.client import Fetcher
 
+    if board is not None and board not in mpd_run.BOARD_ID_COLUMNS:
+        raise typer.BadParameter(
+            f"--board must be one of {sorted(mpd_run.BOARD_ID_COLUMNS)}; got {board!r}"
+        )
+
     settings = get_settings()
     logging.basicConfig(level=settings.log_level)
 
@@ -127,6 +151,7 @@ def enrich(
                     observed_at=datetime.now(UTC),
                     per_state=per_state,
                     redo_after_days=redo_after_days,
+                    board=board,
                 )
                 session.execute(
                     text(
@@ -180,7 +205,7 @@ def extract(
 
     from school_intel.config import get_settings
     from school_intel.db import session_scope
-    from school_intel.extract import saras
+    from school_intel.extract import cisce, saras
 
     logging.basicConfig(level=get_settings().log_level)
     from datetime import datetime
@@ -189,10 +214,15 @@ def extract(
 
     with session_scope() as session:
         result = saras.run(session)
+        cisce_result = cisce.run(session)
         mpd = mpd_run.reextract(session, observed_at=datetime.now(UTC), full=full)
     typer.echo(
         f"saras: documents={result.documents} entities={result.entities} "
         f"observations={result.observations}"
+    )
+    typer.echo(
+        f"cisce: documents={cisce_result.documents} entities={cisce_result.entities} "
+        f"observations={cisce_result.observations}"
     )
     typer.echo(
         f"mpd:   institutions={mpd.considered} fees={mpd.fee_found} "
@@ -406,6 +436,10 @@ def guess_emails(
             " sitting there is a reason nobody looks.",
         ),
     ] = False,
+    board: Annotated[
+        str | None,
+        typer.Option(help="One registry only: 'cbse' or 'cisce'. Omit for both."),
+    ] = None,
 ) -> None:
     """Derive <name>@gmail.com from each school's own domain.
 
@@ -413,10 +447,45 @@ def guess_emails(
     counts stay based on published facts. Safe to re-run; it overwrites.
     """
     from school_intel.db import session_scope
+    from school_intel.extract.mpd.run import BOARD_ID_COLUMNS
     from school_intel.guess_email import backfill
 
+    if board is not None and board not in BOARD_ID_COLUMNS:
+        raise typer.BadParameter(
+            f"--board must be one of {sorted(BOARD_ID_COLUMNS)}; got {board!r}"
+        )
+
     with session_scope() as session:
-        report = backfill(session, only_weak=not all_schools)
+        report = backfill(session, only_weak=not all_schools, board=board)
+    typer.echo(" ".join(f"{k}={v}" for k, v in report.items()))
+
+
+@app.command("guess-student-counts")
+def guess_student_counts(
+    board: Annotated[
+        str | None,
+        typer.Option(help="One registry only: 'cbse' or 'cisce'. Omit for both."),
+    ] = None,
+) -> None:
+    """Fill a random placeholder count for enriched, contactable schools with none.
+
+    Draws a random integer between the DB-wide mean and median of
+    `total_enrollment` - not derived from the school itself. Writes
+    `student_count_guessed` ONLY - never `total_enrollment` - so score and
+    `pcm_12_count` stay based on real or teacher-derived numbers. Safe to
+    re-run; it draws a fresh value each time.
+    """
+    from school_intel.db import session_scope
+    from school_intel.extract.mpd.run import BOARD_ID_COLUMNS
+    from school_intel.guess_student_count import backfill as guess_counts
+
+    if board is not None and board not in BOARD_ID_COLUMNS:
+        raise typer.BadParameter(
+            f"--board must be one of {sorted(BOARD_ID_COLUMNS)}; got {board!r}"
+        )
+
+    with session_scope() as session:
+        report = guess_counts(session, board=board)
     typer.echo(" ".join(f"{k}={v}" for k, v in report.items()))
 
 
